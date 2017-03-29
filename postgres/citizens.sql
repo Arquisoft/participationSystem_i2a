@@ -23,11 +23,12 @@ CREATE TABLE public."user"
   id integer NOT NULL DEFAULT nextval('user_id_seq'::regclass),
   dni text NOT NULL,
   nombre text,
-  apeliidos text,
+  apellidos text,
+  password text,
   email text,
   nacimiento date,
   direccion text,
-  nacinalidad text,
+  nacionalidad text,
   polling integer,
   CONSTRAINT user_pkey PRIMARY KEY (dni),
   CONSTRAINT user_id_key UNIQUE (id)
@@ -108,5 +109,13 @@ WITH (
 );
 ALTER TABLE public.commentary
   OWNER TO postgres;
+
+
+INSERT INTO public."user"(
+            id, dni, nombre, apellidos, email, password, nacimiento, direccion, polling, 
+            nacionalidad)
+    VALUES (1, '12345678A', 'Pepe', 'Calleja', 'calleja@email.com', 'password1234', 
+      '1950-03-25', 'Oviedo', 2, 'Español');
+
 
 
