@@ -17,9 +17,9 @@ before_install:
 - git clone https://github.com/Arquisoft/participants_i2a.git
 - nohup bash -c "cd participants_i2a && mvn spring-boot:run &"
 before_script:
-- psql -U postgres -c 'create database citizens;'
-- psql -U postgres CREATE USER user WITH SUPERUSER PASSWORD 'root'
-- psql -U user -d citizens -f ./postgres/citizens.sql
+- psql -U postgres -c 'CREATE DATABASE citizens;'
+- psql -U postgres -c 'CREATE USER root WITH SUPERUSER PASSWORD 'pass''
+- psql -U root -d citizens -a -f ./postgres/citizens.sql
 - "export DISPLAY=:99.0"
 - "sh -e /etc/init.d/xvfb start"
 - sleep 3 # give xvfb some time to start
