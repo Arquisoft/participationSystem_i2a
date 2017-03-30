@@ -12,7 +12,9 @@ import persistence.UserDao;
 import persistence.conf.Conf;
 
 public class UserDaoImpl implements UserDao {
-	private static String SQL_FIND_USER_BY_ID = Conf.getInstance().getProperty("SQL_FIND_USER_BY_ID");
+	// private static String SQL_FIND_USER_BY_ID =
+	// Conf.getInstance().getProperty("SQL_FIND_USER_BY_ID");
+	private static String SQL_FIND_USER_BY_ID = "SELECT * FROM PUBLIC.USER WHERE ID=?";
 	private Connection con = JDBCDriver.getConnection();
 
 	@Override
@@ -48,8 +50,8 @@ public class UserDaoImpl implements UserDao {
 			return null;
 		} finally {
 			try {
-				rs.close();
-				pst.close();
+				if (rs != null) rs.close();
+				if (pst != null) pst.close();
 			} catch (SQLException e) {
 				System.err.println(e);
 			}

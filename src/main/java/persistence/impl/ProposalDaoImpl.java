@@ -11,7 +11,7 @@ import persistence.ProposalDao;
 import persistence.conf.Conf;
 
 public class ProposalDaoImpl implements ProposalDao {
-	
+
 	private static String SQL_FIND_PROPOSAL_BY_ID = Conf.getInstance().getProperty("SQL_FIND_PROPOSAL_BY_ID");
 	private Connection con = JDBCDriver.getConnection();
 
@@ -31,9 +31,9 @@ public class ProposalDaoImpl implements ProposalDao {
 			Integer votes = rs.getInt("votes");
 			String category = rs.getString("category");
 			Integer userID = rs.getInt("user_id");
-			
-			Proposal proposal = new Proposal().setId(idProp).setContent(content).setVotes(votes).setCategory(category).setUserId(userID);
-			
+
+			Proposal proposal = new Proposal().setId(idProp).setContent(content).setVotes(votes).setCategory(category)
+					.setUserId(userID);
 
 			return proposal;
 
