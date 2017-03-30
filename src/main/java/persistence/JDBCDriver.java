@@ -8,7 +8,7 @@ public class JDBCDriver {
 	public static Connection getConnection() {
 		try {
 			Connection db = DriverManager.getConnection(
-					"jdbc:postgresql:citizens", "root", "pass");
+					"jdbc:postgresql:citizens", "postgres", "postgres");
 			return db;
 		} catch (SQLException e) {
 			System.err.println("Error al conectar con la bbdd: ");
