@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class User {
-	private Long id;
+	private Integer id;
 	
 	private String firstName;
 	private String lastName;
@@ -94,11 +94,11 @@ public class User {
 		return this;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public User setId(Long id) {
+	public User setId(Integer id) {
 		this.id = id;
 		return this;
 	}

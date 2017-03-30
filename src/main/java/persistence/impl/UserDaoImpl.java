@@ -16,17 +16,17 @@ public class UserDaoImpl implements UserDao {
 	private Connection con = JDBCDriver.getConnection();
 
 	@Override
-	public User getUserById(Long id) {
+	public User getUserById(Integer id) {
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		try {
 			pst = con.prepareStatement(SQL_FIND_USER_BY_ID);
-			pst.setLong(1, id);
+			pst.setInt(1, id);
 
 			rs = pst.executeQuery();
 			rs.next();
 
-			Long idBase = rs.getLong("id");
+			Integer idBase = rs.getInt("id");
 			String dni = rs.getString("dni");
 			String name = rs.getString("nombre");
 			String surname = rs.getString("apellidos");

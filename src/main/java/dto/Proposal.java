@@ -1,17 +1,16 @@
 package dto;
 
 public class Proposal {
-	private Long id;
-
+	private Integer id;
 	private String content;
-	private int votes;
+	private Integer votes;
 	private String category;
-	private Long userId;
+	private Integer userId;
 
 	public Proposal() {
 	}
 
-	public Proposal(String content, int votes, String category, Long usedId) {
+	public Proposal(String content, Integer votes, String category, Integer usedId) {
 		super();
 		this.content = content;
 		this.votes = votes;
@@ -19,11 +18,11 @@ public class Proposal {
 		this.userId = usedId;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public Proposal setId(Long id) {
+	public Proposal setId(Integer id) {
 		this.id = id;
 		return this;
 	}
@@ -37,11 +36,11 @@ public class Proposal {
 		return this;
 	}
 
-	public int getVotes() {
+	public Integer getVotes() {
 		return votes;
 	}
 
-	public Proposal setVotes(int votes) {
+	public Proposal setVotes(Integer votes) {
 		this.votes = votes;
 		return this;
 	}
@@ -55,11 +54,11 @@ public class Proposal {
 		return this;
 	}
 
-	public Long getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public Proposal setUserId(Long userId) {
+	public Proposal setUserId(Integer userId) {
 		this.userId = userId;
 		return this;
 	}

@@ -4,6 +4,6 @@ import dto.User;
 
 public interface UserDao {
 
-	User getUserById(Long id);
+	User getUserById(Integer id);
 
 }

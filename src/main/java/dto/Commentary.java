@@ -4,18 +4,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Commentary {
-	private Long id;
+	private Integer id;
 
 	private String content;
 	private int votes;
 	private Date fecha;
-	private Long proposalId;
-	private Long userId;
+	private Integer proposalId;
+	private Integer userId;
 
 	public Commentary() {
 	}
 
-	public Commentary(String content, int votes, Date fecha, Long proposalId, Long usedId) {
+	public Commentary(String content, int votes, Date fecha, Integer proposalId, Integer usedId) {
 		super();
 		this.content = content;
 		this.votes = votes;
@@ -24,11 +24,11 @@ public class Commentary {
 		this.userId = usedId;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public Commentary setId(Long id) {
+	public Commentary setId(Integer id) {
 		this.id = id;
 		return this;
 	}
@@ -60,20 +60,20 @@ public class Commentary {
 		return this;
 	}
 
-	public Long getProposalId() {
+	public Integer getProposalId() {
 		return proposalId;
 	}
 
-	public Commentary setProposalId(Long proposalId) {
+	public Commentary setProposalId(Integer proposalId) {
 		this.proposalId = proposalId;
 		return this;
 	}
 
-	public Long getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public Commentary setUserId(Long userId) {
+	public Commentary setUserId(Integer userId) {
 		this.userId = userId;
 		return this;
 	}
