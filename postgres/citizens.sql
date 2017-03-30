@@ -1,6 +1,5 @@
 ﻿
-  
-  -- Sequence: public.user_id_seq
+-- Sequence: public.user_id_seq
 
 -- DROP SEQUENCE public.user_id_seq;
 
