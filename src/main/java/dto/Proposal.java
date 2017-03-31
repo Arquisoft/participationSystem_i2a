@@ -4,17 +4,17 @@ public class Proposal {
 	private Integer id;
 	private String content;
 	private Integer votes;
-	private String category;
+	private Integer categoryId;
 	private Integer userId;
 
 	public Proposal() {
 	}
 
-	public Proposal(String content, Integer votes, String category, Integer usedId) {
+	public Proposal(String content, Integer votes, Integer categoryId, Integer usedId) {
 		super();
 		this.content = content;
 		this.votes = votes;
-		this.category = category;
+		this.categoryId = categoryId;
 		this.userId = usedId;
 	}
 
@@ -45,12 +45,12 @@ public class Proposal {
 		return this;
 	}
 
-	public String getCategory() {
-		return category;
+	public Integer getCategoryId() {
+		return categoryId;
 	}
 
-	public Proposal setCategory(String category) {
-		this.category = category;
+	public Proposal setCategory(Integer categoryId) {
+		this.categoryId = categoryId;
 		return this;
 	}
 
@@ -66,7 +66,7 @@ public class Proposal {
 	@Override
 	public String toString() {
 		return "Content: " + content + "; Votes: " + votes + "; "
-				+ "Category: " + category + "; User: " + userId;
+				+ "Category: " + categoryId + "; User: " + userId;
 
 	}
 
@@ -74,7 +74,7 @@ public class Proposal {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((category == null) ? 0 : category.hashCode());
+		result = prime * result + ((categoryId == null) ? 0 : categoryId.hashCode());
 		result = prime * result + ((content == null) ? 0 : content.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());

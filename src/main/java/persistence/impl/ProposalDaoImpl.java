@@ -16,7 +16,7 @@ public class ProposalDaoImpl implements ProposalDao {
 	private Connection con = JDBCDriver.getConnection();
 
 	@Override
-	public Proposal getProposalById(Long id) {
+	public Proposal getProposalById(Integer id) {
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		try {
@@ -29,10 +29,10 @@ public class ProposalDaoImpl implements ProposalDao {
 			Integer idProp = rs.getInt("id");
 			String content = rs.getString("content");
 			Integer votes = rs.getInt("votes");
-			String category = rs.getString("category");
+			Integer category_id = rs.getInt("category_id");
 			Integer userID = rs.getInt("user_id");
 
-			Proposal proposal = new Proposal().setId(idProp).setContent(content).setVotes(votes).setCategory(category)
+			Proposal proposal = new Proposal().setId(idProp).setContent(content).setVotes(votes).setCategory(category_id)
 					.setUserId(userID);
 
 			return proposal;

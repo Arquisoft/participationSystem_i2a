@@ -38,7 +38,40 @@ WITH (
 ALTER TABLE public."user"
   OWNER TO postgres;
 
-  -- Sequence: public.proposal_id_seq
+-- Table: public.category
+
+-- DROP TABLE public.category;
+
+CREATE TABLE public.category
+(
+  id integer NOT NULL DEFAULT nextval('category_id_seq'::regclass),
+  name text,
+  CONSTRAINT category_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.category
+  OWNER TO postgres;
+
+
+  
+-- Sequence: public.category_id_seq
+
+-- DROP SEQUENCE public.category_id_seq;
+
+CREATE SEQUENCE public.category_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public.category_id_seq
+  OWNER TO postgres;
+  
+  
+  
+-- Sequence: public.proposal_id_seq
 
 -- DROP SEQUENCE public.proposal_id_seq;
 
@@ -50,7 +83,7 @@ CREATE SEQUENCE public.proposal_id_seq
   CACHE 1;
 ALTER TABLE public.proposal_id_seq
   OWNER TO postgres;
-
+  
   
 -- Table: public.proposal
 
@@ -61,9 +94,12 @@ CREATE TABLE public.proposal
   id integer NOT NULL DEFAULT nextval('proposal_id_seq'::regclass),
   content text,
   votes integer,
-  category text,
   user_id integer,
+  category_id integer,
   CONSTRAINT proposal_pkey PRIMARY KEY (id),
+  CONSTRAINT "foreignKey_Category" FOREIGN KEY (category_id)
+      REFERENCES public.category (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT proposal_user_id_fkey FOREIGN KEY (user_id)
       REFERENCES public."user" (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
@@ -73,6 +109,17 @@ WITH (
 );
 ALTER TABLE public.proposal
   OWNER TO postgres;
+
+-- Index: public."fki_foreignKey_Category"
+
+-- DROP INDEX public."fki_foreignKey_Category";
+
+CREATE INDEX "fki_foreignKey_Category"
+  ON public.proposal
+  USING btree
+  (category_id);
+
+
 
   -- Sequence: public.commentary_id_seq
 
