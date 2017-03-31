@@ -3,7 +3,7 @@
 [![codecov](https://codecov.io/gh/Arquisoft/participants_i2a/branch/master/graph/badge.svg)](https://codecov.io/gh/Arquisoft/participants_i2a)
 
 
-# participants0
+# participationSystem_i2a
 
 [![Join the chat at https://gitter.im/Arquisoft/participants0](https://badges.gitter.im/Arquisoft/participants0.svg)](https://gitter.im/Arquisoft/participants0?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -13,4 +13,7 @@ Skeleton of participants module
 
 - Herminio García González (@herminiogg)
 - Jose Emilio Labra Gayo (@labra)
+- Claudia Castañon Ferreiro (@ClaudiaCF)
+- Sara González Tomillo (@SaraTomillo)
+- Carla Fernández González(@CarlaFernandez)
 
