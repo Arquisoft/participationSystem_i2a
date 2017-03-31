@@ -14,13 +14,13 @@ import persistence.conf.Conf;
 
 public class ProposalDaoImpl implements ProposalDao {
 
-	private static String SQL_FIND_PROPOSAL_BY_ID = Conf.getInstance().getProperty("SQL_FIND_PROPOSAL_BY_ID");
-	private static String SQL_ALL_PROPOSALS = Conf.getInstance().getProperty("SQL_ALL_PROPOSALS");
-	private static String SQL_DELETE_PROPOSAL = Conf.getInstance().getProperty("SQL_DELETE_PROPOSAL");
-	private static String SQL_INSERT_PROPOSAL = Conf.getInstance().getProperty("SQL_INSERT_PROPOSAL");
+	//private static String SQL_FIND_PROPOSAL_BY_ID = Conf.getInstance().getProperty("SQL_FIND_PROPOSAL_BY_ID");
+	//private static String SQL_ALL_PROPOSALS = Conf.getInstance().getProperty("SQL_ALL_PROPOSALS");
+	//private static String SQL_DELETE_PROPOSAL = Conf.getInstance().getProperty("SQL_DELETE_PROPOSAL");
+	//private static String SQL_INSERT_PROPOSAL = Conf.getInstance().getProperty("SQL_INSERT_PROPOSAL");
 
 	private Connection con = JDBCDriver.getConnection();
-
+/*
 	@Override
 	public Proposal getProposalById(Integer id) {
 		PreparedStatement pst = null;
@@ -56,7 +56,7 @@ public class ProposalDaoImpl implements ProposalDao {
 				System.err.println(e);
 			}
 		}
-	}
+	}*/
 
 	@Override
 	public List<Proposal> getProposals() {
@@ -64,7 +64,7 @@ public class ProposalDaoImpl implements ProposalDao {
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		try {
-			pst = con.prepareStatement(SQL_ALL_PROPOSALS);
+			pst = con.prepareStatement("SELECT * FROM PUBLIC.PROPOSAL");
 
 			rs = pst.executeQuery();
 			while (rs.next()) {
@@ -75,9 +75,7 @@ public class ProposalDaoImpl implements ProposalDao {
 				Integer category_id = rs.getInt("category_id");
 				Integer userID = rs.getInt("user_id");
 
-				Proposal proposal = new Proposal().setVotes(votes)
-						.setCategory(category_id).setUserId(userID);
-				proposal.setContent(content);
+				Proposal proposal = new Proposal(content, votes, category_id, userID);
 				proposal.setId(idProp);
 
 				proposals.add(proposal);
@@ -98,6 +96,7 @@ public class ProposalDaoImpl implements ProposalDao {
 		}
 	}
 
+	/*
 	@Override
 	public void deleteProposalById(Integer id) {
 		PreparedStatement pst = null;
@@ -115,18 +114,17 @@ public class ProposalDaoImpl implements ProposalDao {
 				System.err.println(e);
 			}
 		}
-	}
+	}*/
 
 	@Override
 	public void createProposal(Proposal p) {
 		PreparedStatement pst = null;
 		try {
-			pst = con.prepareStatement(SQL_INSERT_PROPOSAL);
-			pst.setInt(1, p.getId());
-			pst.setString(2, p.getContent());
-			pst.setInt(3, p.getVotes());
-			pst.setInt(4, p.getUserId());
-			pst.setInt(4, p.getCategoryId());
+			pst = con.prepareStatement("INSERT INTO PUBLIC.PROPOSAL(content, votes, user_id) VALUES (?,?,?)");
+			pst.setString(1, p.getContent());
+			pst.setInt(2, p.getVotes());
+			pst.setInt(3, p.getUserId());
+			//pst.setInt(4, p.getCategoryId());
 
 			pst.executeUpdate();
 
@@ -139,6 +137,18 @@ public class ProposalDaoImpl implements ProposalDao {
 				System.err.println(e);
 			}
 		}
+	}
+
+	@Override
+	public Proposal getProposalById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteProposalById(Integer id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

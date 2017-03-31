@@ -13,6 +13,7 @@ import persistence.UserDao;
 public class UserDaoImpl implements UserDao {
 	// private static String SQL_FIND_USER_BY_ID =
 	// Conf.getInstance().getProperty("SQL_FIND_USER_BY_ID");
+	
 	private static String SQL_FIND_USER_BY_ID = "SELECT * FROM PUBLIC.USER WHERE ID=?";
 	private Connection con = JDBCDriver.getConnection();
 
@@ -38,10 +39,10 @@ public class UserDaoImpl implements UserDao {
 			int polling = rs.getInt("polling");
 			String pass = rs.getString("password");
 
-			User user = new User().setDni(dni).setName(name).setSurname(surname).setEmail(email)
-					.setBirthdate(birth).setNationality(nationality).setAddress(address).setPollingStation(polling);
-			user.setPassword(pass);
+			User user = new User(dni, name, surname, birth, address, email,
+					nationality, polling);
 			user.setId(idBase);
+			user.setPassword(pass);
 
 			return user;
 

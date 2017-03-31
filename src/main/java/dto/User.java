@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class User {
 	private Integer id;
-	
+
 	private String firstName;
 	private String lastName;
 	private Date birthdate;
@@ -16,7 +16,8 @@ public class User {
 	private int pollingStation;
 	private String dni;
 
-	public User() { }
+	public User() {
+	}
 
 	public User(String dni, String firstName, String lastName, Date birthdate, String address, String email,
 			String nationality, int pollingStation) {
@@ -35,45 +36,40 @@ public class User {
 		return firstName;
 	}
 
-	public User setName(String firstName) {
+	public void setName(String firstName) {
 		this.firstName = firstName;
-		return this;
 	}
 
 	public String getLastName() {
 		return lastName;
 	}
 
-	public User setSurname(String lastName) {
+	public void setSurname(String lastName) {
 		this.lastName = lastName;
-		return this;
 	}
 
 	public Date getBirthdate() {
 		return birthdate;
 	}
 
-	public User setBirthdate(Date birthdate) {
+	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
-		return this;
 	}
 
 	public String getAddress() {
 		return address;
 	}
 
-	public User setAddress(String address) {
+	public void setAddress(String address) {
 		this.address = address;
-		return this;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public User setEmail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
-		return this;
 	}
 
 	public String getPassword() {
@@ -82,32 +78,29 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-		//return this;
 	}
 
 	public String getNationality() {
 		return nationality;
 	}
 
-	public User setNationality(String nationality) {
+	public void setNationality(String nationality) {
 		this.nationality = nationality;
-		return this;
 	}
 
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
-		//return this;
 	}
-	
-	public User setDni(String dni) {
+
+	public void setDni(String dni) {
 		this.dni = dni;
-		return this;
+
 	}
-	
+
 	public String getDni() {
 		return dni;
 	}
@@ -116,11 +109,11 @@ public class User {
 		return pollingStation;
 	}
 
-	public User setPollingStation(int pollingStation) {
+	public void setPollingStation(int pollingStation) {
 		this.pollingStation = pollingStation;
-		return this;
+
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -144,14 +137,13 @@ public class User {
 	}
 
 	@Override
-    public String toString() {
-        String simpleDate = new SimpleDateFormat("dd/MM/yyyy").format(birthdate);
+	public String toString() {
+		String simpleDate = new SimpleDateFormat("dd/MM/yyyy").format(birthdate);
 
-        return "Name: " + firstName + "; Surname: " + lastName + "; " +
-                "Email: " + email + "; Birth date: " + simpleDate + "; " +
-                "Address: " + address + "; Nationality: " +
-                nationality + "; DNI: " + dni + "; Polling station: " + pollingStation;
+		return "Name: " + firstName + "; Surname: " + lastName + "; " + "Email: " + email + "; Birth date: "
+				+ simpleDate + "; " + "Address: " + address + "; Nationality: " + nationality + "; DNI: " + dni
+				+ "; Polling station: " + pollingStation;
 
-    }
+	}
 
 }

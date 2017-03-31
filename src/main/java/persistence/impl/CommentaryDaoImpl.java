@@ -39,8 +39,7 @@ public class CommentaryDaoImpl implements CommentaryDao {
 			Integer userID = rs.getInt("user_id");
 			Integer proposalID = rs.getInt("proposal_id");
 
-			Commentary comment = new Commentary().setId(idComment).setContent(content).setVotes(votes)
-					.setFecha(fecha).setUserId(userID).setProposalId(proposalID);
+			Commentary comment = new Commentary(idComment, content, votes, fecha, userID, proposalID);
 
 			comments.add(comment);
 			}
@@ -102,8 +101,7 @@ public class CommentaryDaoImpl implements CommentaryDao {
 			Integer userID = rs.getInt("user_id");
 			Integer proposalID = rs.getInt("proposal_id");
 
-			Commentary comment = new Commentary().setId(idComment).setContent(content).setVotes(votes)
-					.setFecha(fecha).setUserId(userID).setProposalId(proposalID);
+			Commentary comment = new Commentary(idComment, content, votes, fecha, userID, proposalID);
 
 			comments.add(comment);
 			}
@@ -140,8 +138,7 @@ public class CommentaryDaoImpl implements CommentaryDao {
 			Integer userID = rs.getInt("user_id");
 			Integer proposalID = rs.getInt("proposal_id");
 
-			Commentary comment = new Commentary().setId(idComment).setContent(content).setVotes(votes)
-					.setFecha(fecha).setUserId(userID).setProposalId(proposalID);
+			Commentary comment = new Commentary(idComment, content, votes, fecha, userID, proposalID);
 
 			comments.add(comment);
 			}

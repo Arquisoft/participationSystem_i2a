@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Create proposal</title>
+</head>
+<body>
+<h1>Create a new proposal</h1>
+	<form th:action="@{/createProposal}" th:object="${createProposal}" method="POST">
+        
+        <label for="body">Explanation of your proposal proposal:</label>
+        <textarea rows="5" id="content" th:field="*{content}"></textarea>
+        
+        <input type="submit" value="Send" />
+    </form>
+</body>
+</html>

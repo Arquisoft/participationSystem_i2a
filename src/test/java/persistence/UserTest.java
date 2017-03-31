@@ -16,8 +16,7 @@ public class UserTest {
 	public void testFindById() throws ParseException {
 		Date simpleDate = new SimpleDateFormat("dd/MM/yyyy").parse("25/03/1950");
 		
-		User user = new User().setDni("12345678A").setName("Pepe").setSurname("Calleja").setEmail("calleja@email.com")
-				.setBirthdate(simpleDate).setNationality("Español").setAddress("Oviedo").setPollingStation(2);
+		User user = new User("12345678A", "Pepe", "Calleja", simpleDate, "Oviedo", "calleja@email.com", "Español", 2);
 		user.setId(1);
 		user.setPassword("password");
 		

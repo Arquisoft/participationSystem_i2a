@@ -32,9 +32,8 @@ public class Proposal {
 		return id;
 	}
 
-	public Proposal setId(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
-		return this;
 	}
 
 	public String getContent() {
@@ -43,34 +42,30 @@ public class Proposal {
 
 	public void setContent(String content) {
 		this.content = content;
-	//	return this;
 	}
 
 	public Integer getVotes() {
 		return votes;
 	}
 
-	public Proposal setVotes(Integer votes) {
+	public void setVotes(Integer votes) {
 		this.votes = votes;
-		return this;
 	}
 
 	public Integer getCategoryId() {
 		return categoryId;
 	}
 
-	public Proposal setCategory(Integer categoryId) {
+	public void setCategory(Integer categoryId) {
 		this.categoryId = categoryId;
-		return this;
 	}
 
 	public Integer getUserId() {
 		return userId;
 	}
 
-	public Proposal setUserId(Integer userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
-		return this;
 	}
 
 	@Override

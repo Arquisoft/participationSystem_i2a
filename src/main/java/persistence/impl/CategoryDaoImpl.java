@@ -30,7 +30,7 @@ public class CategoryDaoImpl implements CategoryDao {
 				Integer id = rs.getInt("id");
 				String name = rs.getString("name");
 
-				Category category = new Category().setId(id).setName(name);
+				Category category = new Category(id, name);
 				categories.add(category);
 			}
 

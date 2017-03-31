@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Participation System</title>
+</head>
+
+<body>
+
+	<h3> Proposals </h3>
+		<table>
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Category</th>
+					<th>Votes</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="prop : ${proposals}">
+					<td th:text="${prop.getContent()}"></td>
+					<td th:text="${prop.getCategoryId()}"></td>
+					<td th:text="${prop.getVotes()}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+<form th:action="@{/user/createProposal}" th:object="${createProposal}" method="POST">
+        
+        <label for="text">Explanation of your proposal proposal:</label>
+        <textarea rows="5" id="text" th:field="*{text}"></textarea>
+        
+        <input type="submit" value="Send" />
+</form>
+
+
+
+</body>
+</html>

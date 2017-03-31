@@ -15,7 +15,7 @@ public class Commentary {
 	public Commentary() {
 	}
 
-	public Commentary(String content, int votes, Date fecha, Integer proposalId, Integer usedId) {
+	public Commentary(Integer idComment, String content, int votes, Date fecha, Integer proposalId, Integer usedId) {
 		super();
 		this.content = content;
 		this.votes = votes;
@@ -28,54 +28,48 @@ public class Commentary {
 		return id;
 	}
 
-	public Commentary setId(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
-		return this;
 	}
 
 	public String getContent() {
 		return content;
 	}
 
-	public Commentary setContent(String content) {
+	public void setContent(String content) {
 		this.content = content;
-		return this;
 	}
 
 	public int getVotes() {
 		return votes;
 	}
 
-	public Commentary setVotes(int votes) {
+	public void setVotes(int votes) {
 		this.votes = votes;
-		return this;
 	}
 
 	public Date getFecha() {
 		return fecha;
 	}
 
-	public Commentary setFecha(Date fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
-		return this;
 	}
 
 	public Integer getProposalId() {
 		return proposalId;
 	}
 
-	public Commentary setProposalId(Integer proposalId) {
+	public void setProposalId(Integer proposalId) {
 		this.proposalId = proposalId;
-		return this;
 	}
 
 	public Integer getUserId() {
 		return userId;
 	}
 
-	public Commentary setUserId(Integer userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
-		return this;
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package hello;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
 
+import java.net.URI;
 import java.net.URL;
 
 import org.junit.Before;
@@ -36,10 +37,10 @@ public class MainControllerTest {
 	}
 
 	@Test
-	public void getLanding() throws Exception {
-		String userURI = base.toString() + "/user";  
+	public void getLanding() throws Exception { 
+		URI userURI = new URI(base.toString() + "/user");  
 		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
-		assertThat(response.getBody(), containsString("Hola"));
+		assertThat(response.getBody(), containsString("Proposals"));
 	}
 	
 	@Test
