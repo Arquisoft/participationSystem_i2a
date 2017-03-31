@@ -1,4 +1,3 @@
-﻿
 -- Sequence: public.user_id_seq
 
 -- DROP SEQUENCE public.user_id_seq;
@@ -35,7 +34,21 @@ CREATE TABLE public."user"
 WITH (
   OIDS=FALSE
 );
+
 ALTER TABLE public."user"
+  OWNER TO postgres;
+
+-- Sequence: public.category_id_seq
+
+-- DROP SEQUENCE public.category_id_seq;
+
+CREATE SEQUENCE public.category_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public.category_id_seq
   OWNER TO postgres;
 
 -- Table: public.category
@@ -56,18 +69,7 @@ ALTER TABLE public.category
 
 
   
--- Sequence: public.category_id_seq
 
--- DROP SEQUENCE public.category_id_seq;
-
-CREATE SEQUENCE public.category_id_seq
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 1;
-ALTER TABLE public.category_id_seq
-  OWNER TO postgres;
   
   
   

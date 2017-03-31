@@ -9,7 +9,6 @@ import java.util.Date;
 import dto.User;
 import persistence.JDBCDriver;
 import persistence.UserDao;
-import persistence.conf.Conf;
 
 public class UserDaoImpl implements UserDao {
 	// private static String SQL_FIND_USER_BY_ID =
