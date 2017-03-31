@@ -80,9 +80,9 @@ public class User {
 		return password;
 	}
 
-	public User setPassword(String password) {
+	public void setPassword(String password) {
 		this.password = password;
-		return this;
+		//return this;
 	}
 
 	public String getNationality() {
@@ -98,9 +98,9 @@ public class User {
 		return id;
 	}
 	
-	public User setId(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
-		return this;
+		//return this;
 	}
 	
 	public User setDni(String dni) {

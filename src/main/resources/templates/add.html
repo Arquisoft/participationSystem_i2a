@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Create proposal</title>
+</head>
+<body>
+<h1>DOES THIS WORK</h1>
+<form th:action="@{/createProposal}" th:object="${proposal}" method="POST">
+        <label for="content">Content: </label>
+   		<input type="text" id="content" th:field="*{content}" />
+   		<label for="category">Category: </label>
+   		<select id="category" th:field="*{category}" >
+            <option selected="true" value="base">Select a category</option>
+            <option th:each="cat:${categories}" th:value="${cat}" th:text="${cat}"></option>
+        </select>
+        <input type="submit" value="Send" />
+    </form>
+</body>
+</html>

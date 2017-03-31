@@ -38,9 +38,10 @@ public class UserDaoImpl implements UserDao {
 			int polling = rs.getInt("polling");
 			String pass = rs.getString("password");
 
-			User user = new User().setId(idBase).setDni(dni).setName(name).setSurname(surname).setEmail(email)
-					.setBirthdate(birth).setNationality(nationality).setAddress(address).setPollingStation(polling)
-					.setPassword(pass);
+			User user = new User().setDni(dni).setName(name).setSurname(surname).setEmail(email)
+					.setBirthdate(birth).setNationality(nationality).setAddress(address).setPollingStation(polling);
+			user.setPassword(pass);
+			user.setId(idBase);
 
 			return user;
 

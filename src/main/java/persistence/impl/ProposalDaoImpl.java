@@ -18,7 +18,7 @@ public class ProposalDaoImpl implements ProposalDao {
 	private static String SQL_ALL_PROPOSALS = Conf.getInstance().getProperty("SQL_ALL_PROPOSALS");
 	private static String SQL_DELETE_PROPOSAL = Conf.getInstance().getProperty("SQL_DELETE_PROPOSAL");
 	private static String SQL_INSERT_PROPOSAL = Conf.getInstance().getProperty("SQL_INSERT_PROPOSAL");
-	
+
 	private Connection con = JDBCDriver.getConnection();
 
 	@Override
@@ -38,8 +38,10 @@ public class ProposalDaoImpl implements ProposalDao {
 			Integer category_id = rs.getInt("category_id");
 			Integer userID = rs.getInt("user_id");
 
-			Proposal proposal = new Proposal().setId(idProp).setContent(content).setVotes(votes).setCategory(category_id)
-					.setUserId(userID);
+			Proposal proposal = new Proposal().setVotes(votes).setUserId(userID);
+			proposal.setContent(content);
+			proposal.setCategory(category_id);
+			proposal.setId(idProp);
 
 			return proposal;
 
@@ -55,7 +57,7 @@ public class ProposalDaoImpl implements ProposalDao {
 			}
 		}
 	}
-	
+
 	@Override
 	public List<Proposal> getProposals() {
 		List<Proposal> proposals = new ArrayList<Proposal>();
@@ -65,20 +67,22 @@ public class ProposalDaoImpl implements ProposalDao {
 			pst = con.prepareStatement(SQL_ALL_PROPOSALS);
 
 			rs = pst.executeQuery();
-			while(rs.next()){
+			while (rs.next()) {
 
-			Integer idProp = rs.getInt("id");
-			String content = rs.getString("content");
-			Integer votes = rs.getInt("votes");
-			Integer category_id = rs.getInt("category_id");
-			Integer userID = rs.getInt("user_id");
+				Integer idProp = rs.getInt("id");
+				String content = rs.getString("content");
+				Integer votes = rs.getInt("votes");
+				Integer category_id = rs.getInt("category_id");
+				Integer userID = rs.getInt("user_id");
 
-			Proposal proposal = new Proposal().setId(idProp).setContent(content).setVotes(votes).setCategory(category_id)
-					.setUserId(userID);
+				Proposal proposal = new Proposal().setVotes(votes)
+						.setCategory(category_id).setUserId(userID);
+				proposal.setContent(content);
+				proposal.setId(idProp);
 
-			proposals.add(proposal);
+				proposals.add(proposal);
 			}
-			
+
 			return proposals;
 
 		} catch (SQLException e) {
@@ -93,7 +97,7 @@ public class ProposalDaoImpl implements ProposalDao {
 			}
 		}
 	}
-	
+
 	@Override
 	public void deleteProposalById(Integer id) {
 		PreparedStatement pst = null;
@@ -112,7 +116,7 @@ public class ProposalDaoImpl implements ProposalDao {
 			}
 		}
 	}
-	
+
 	@Override
 	public void createProposal(Proposal p) {
 		PreparedStatement pst = null;
@@ -123,9 +127,9 @@ public class ProposalDaoImpl implements ProposalDao {
 			pst.setInt(3, p.getVotes());
 			pst.setInt(4, p.getUserId());
 			pst.setInt(4, p.getCategoryId());
-			
+
 			pst.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			System.err.println(e);
 		} finally {

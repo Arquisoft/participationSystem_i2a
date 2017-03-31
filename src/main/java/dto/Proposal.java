@@ -6,6 +6,16 @@ public class Proposal {
 	private Integer votes;
 	private Integer categoryId;
 	private Integer userId;
+	
+	private Category category;
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 	public Proposal() {
 	}
@@ -31,9 +41,9 @@ public class Proposal {
 		return content;
 	}
 
-	public Proposal setContent(String content) {
+	public void setContent(String content) {
 		this.content = content;
-		return this;
+	//	return this;
 	}
 
 	public Integer getVotes() {
