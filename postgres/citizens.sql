@@ -159,11 +159,23 @@ ALTER TABLE public.commentary
   OWNER TO postgres;
 
 
-INSERT INTO public."user"(
+INSERT INTO public.user(
             id, dni, nombre, apellidos, email, password, nacimiento, direccion, polling, 
             nacionalidad)
     VALUES (1, '12345678A', 'Pepe', 'Calleja', 'calleja@email.com', 'password1234', 
       '1950-03-25', 'Oviedo', 2, 'Español');
+
+INSERT INTO public.category(
+            id, name)
+    VALUES (1, 'General');
+
+INSERT INTO public.proposal(
+            id, content, votes, user_id, category_id)
+    VALUES (1, 'Hacer un parque', 0, 1, 1);
+
+INSERT INTO public.proposal(
+            id, content, votes, user_id, category_id)
+    VALUES (2, 'Hacer un monumento', 0, 1, 1);
 
 
 

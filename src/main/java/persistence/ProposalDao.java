@@ -14,4 +14,8 @@ public interface ProposalDao {
 
 	void createProposal(Proposal p);
 
+	void voteProposal(Proposal proposal);
+	
+	void updateProposal(Proposal proposal);
+
 }

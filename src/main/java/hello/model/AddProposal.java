@@ -1,14 +1,17 @@
 package hello.model;
 
+import dto.Category;
+
 public class AddProposal {
 
-	private String cateogry;
+	private Category category;
 	private String text;
-	public String getCateogry() {
-		return cateogry;
+
+	public Category getCategory() {
+		return category;
 	}
-	public void setCateogry(String cateogry) {
-		this.cateogry = cateogry;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 	public String getText() {
 		return text;
