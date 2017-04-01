@@ -1,11 +1,15 @@
 package hello;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import dto.Category;
 import dto.Proposal;
 import dto.User;
 import hello.model.CreateProposal;
@@ -17,7 +21,9 @@ public class MainController {
 
 	@Autowired
 	private KafkaProducer kafkaProducer;
-
+	
+	private List<Category> categoriesNamesList = Persistence.getCategoryDao().findAllCategories();
+	private List<Proposal> proposalList = Persistence.getProposalDao().getProposals();
 
 	@RequestMapping("/")
 	public String landing(Model model) {
@@ -55,6 +61,10 @@ public class MainController {
 		return "redirect:/user/home";
 	}
 	
+	@RequestMapping("/user/addProposal")
+	public String addProposal() {
+		return "AddProposal";
+	}
 	
 
 
