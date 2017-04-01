@@ -1,6 +1,6 @@
 package hello.model;
 
-public class CreateProposal {
+public class AddProposal {
 
 	private String cateogry;
 	private String text;

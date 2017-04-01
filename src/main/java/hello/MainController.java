@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import dto.Category;
 import dto.Proposal;
 import dto.User;
-import hello.model.CreateProposal;
+import hello.model.AddProposal;
 import hello.producers.KafkaProducer;
 import persistence.Persistence;
 
@@ -27,8 +27,8 @@ public class MainController {
 
 	@RequestMapping("/")
 	public String landing(Model model) {
-		model.addAttribute("createProposal", new CreateProposal());
-		model.addAttribute("proposals", Persistence.getProposalDao().getProposals());
+		model.addAttribute("createProposal", new AddProposal());
+		model.addAttribute("proposals", proposalList);
 		return "/user/home"; // return "index";
 	}
 	
@@ -46,24 +46,19 @@ public class MainController {
 	@RequestMapping("/user/home")
 	public String send(Model model) {
 		model.addAttribute("proposals", Persistence.getProposalDao().getProposals());
-		model.addAttribute("createProposal", new CreateProposal());
+		model.addAttribute("createProposal", new AddProposal());
 		return "/user/home";
 	}
 	
-	@RequestMapping("/user/createProposal")
-	public String createProposal(Model model, @ModelAttribute CreateProposal createProposal) {
+	@RequestMapping("/user/addProposal")
+	public String createProposal(Model model, @ModelAttribute AddProposal addProposal) {
 		Proposal proposal = new Proposal();
 		//proposal.setCategory(new Category().setName(createProposal.getCateogry()));
-		proposal.setContent(createProposal.getText());
+		proposal.setContent(addProposal.getText());
 		proposal.setUserId(1);
 		proposal.setVotes(0);
 		Persistence.getProposalDao().createProposal(proposal);
 		return "redirect:/user/home";
-	}
-	
-	@RequestMapping("/user/addProposal")
-	public String addProposal() {
-		return "AddProposal";
 	}
 	
 
