@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import dto.User;
 import persistence.JDBCDriver;
@@ -15,6 +17,7 @@ public class UserDaoImpl implements UserDao {
 	// Conf.getInstance().getProperty("SQL_FIND_USER_BY_ID");
 	
 	private static String SQL_FIND_USER_BY_ID = "SELECT * FROM PUBLIC.USER WHERE ID=?";
+	private static String SQL_FIND_ALL_EMAILS = "SELECT EMAIL FROM PUBLIC.USER";
 	private Connection con = JDBCDriver.getConnection();
 
 	@Override
@@ -45,6 +48,34 @@ public class UserDaoImpl implements UserDao {
 			user.setPassword(pass);
 
 			return user;
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			return null;
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pst != null) pst.close();
+			} catch (SQLException e) {
+				System.err.println(e);
+			}
+		}
+	}
+
+	@Override
+	public List<String> findAllEmails() {
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		List<String> emails = new ArrayList<String>();
+		try {
+			pst = con.prepareStatement(SQL_FIND_ALL_EMAILS);
+
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				emails.add(rs.getString(1));
+			}
+
+			return emails;
 
 		} catch (SQLException e) {
 			System.err.println(e);

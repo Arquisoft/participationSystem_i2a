@@ -1,6 +1,7 @@
 package hello;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,10 +27,8 @@ public class MainController {
 	}
 	
 	@RequestMapping("/login")
-	public String send(Model model, @ModelAttribute User userLogged) {
-		User user = Persistence.getUserDao().getUserById(userLogged.getId());
-		model.addAttribute("user", user);
-		return "redirect:/user/home";
+	public String login(Model model) {
+		return "login";
 	}
 	
 	@RequestMapping("/send")

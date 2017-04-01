@@ -4,12 +4,10 @@
 </head>
 <body>
 <h1>Login for the Participation System</h1>
-<form th:action="@{/login}" th:object="${user}" method="POST">
-    <label for="login">Login: </label>
-    <input type="text" id="login" th:field="*{id}" />
-    <label for="password">Password: </label>
-    <input type="password" id="password" th:field="*{password}" />
-    <input type="submit" value="Send" />
-</form>
+		<form th:action="@{/login}" method="post">
+            <div><label> User Name : <input type="text" name="username"/> </label></div>
+            <div><label> Password: <input type="password" name="password"/> </label></div>
+            <div><input type="submit" value="Sign In"/></div>
+        </form>
 </body>
 </html>
