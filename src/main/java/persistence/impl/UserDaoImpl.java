@@ -9,16 +9,19 @@ import java.util.Date;
 import java.util.List;
 
 import dto.User;
-import persistence.JDBCDriver;
+import persistence.Database;
 import persistence.UserDao;
 
 public class UserDaoImpl implements UserDao {
 	// private static String SQL_FIND_USER_BY_ID =
 	// Conf.getInstance().getProperty("SQL_FIND_USER_BY_ID");
-	
+
 	private static String SQL_FIND_USER_BY_ID = "SELECT * FROM PUBLIC.USER WHERE ID=?";
 	private static String SQL_FIND_ALL_EMAILS = "SELECT EMAIL FROM PUBLIC.USER";
-	private Connection con = JDBCDriver.getConnection();
+	private static String SQL_INSERT_USER = "INSERT INTO USER (dni, nombre, apellidos, "
+			+ "password, email, nacimiento, direccion, nacionalidad, polling) "
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private Connection con = Database.getConnection();
 
 	@Override
 	public User getUserById(Integer id) {
@@ -42,8 +45,7 @@ public class UserDaoImpl implements UserDao {
 			int polling = rs.getInt("polling");
 			String pass = rs.getString("password");
 
-			User user = new User(dni, name, surname, birth, address, email,
-					nationality, polling);
+			User user = new User(dni, name, surname, birth, address, email, nationality, polling);
 			user.setId(idBase);
 			user.setPassword(pass);
 
@@ -54,8 +56,10 @@ public class UserDaoImpl implements UserDao {
 			return null;
 		} finally {
 			try {
-				if (rs != null) rs.close();
-				if (pst != null) pst.close();
+				if (rs != null)
+					rs.close();
+				if (pst != null)
+					pst.close();
 			} catch (SQLException e) {
 				System.err.println(e);
 			}
@@ -71,7 +75,7 @@ public class UserDaoImpl implements UserDao {
 			pst = con.prepareStatement(SQL_FIND_ALL_EMAILS);
 
 			rs = pst.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				emails.add(rs.getString(1));
 			}
 
@@ -82,11 +86,45 @@ public class UserDaoImpl implements UserDao {
 			return null;
 		} finally {
 			try {
-				if (rs != null) rs.close();
-				if (pst != null) pst.close();
+				if (rs != null)
+					rs.close();
+				if (pst != null)
+					pst.close();
 			} catch (SQLException e) {
 				System.err.println(e);
 			}
 		}
+	}
+
+	@Override
+	public void createUser(User user) {
+		// TODO de momento la password sera siempre "pass", 
+		// luego se cambiara a la generada en la primera entrega
+		
+		PreparedStatement pst = null;
+		try {
+			pst = con.prepareStatement(SQL_INSERT_USER);
+			pst.setString(1, user.getDni());
+			pst.setString(2, user.getFirstName());
+			pst.setString(3, user.getLastName());
+			pst.setString(4, "pass");
+			pst.setString(5, user.getEmail());
+			pst.setDate(6, new java.sql.Date(user.getBirthdate().getTime()));
+			pst.setString(7, user.getAddress());
+			pst.setString(8, user.getNationality());
+			pst.setInt(9, user.getPollingStation());
+
+			pst.executeUpdate();
+
+		} catch (SQLException e) {
+			System.err.println(e);
+		} finally {
+			try {
+				pst.close();
+			} catch (SQLException e) {
+				System.err.println(e);
+			}
+		}
+
 	}
 }

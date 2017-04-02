@@ -165,6 +165,12 @@ INSERT INTO public.user(
     VALUES (1, '12345678A', 'Pepe', 'Calleja', 'calleja@email.com', 'password1234', 
       '1950-03-25', 'Oviedo', 2, 'Español');
 
+INSERT INTO public.user(
+            id, dni, nombre, apellidos, email, password, nacimiento, direccion, polling, 
+            nacionalidad)
+    VALUES (2, '12345678A', 'User', 'User', 'user@email.com', 'pass', 
+      '1953-06-21', 'Oviedo', 1, 'Español');
+
 INSERT INTO public.category(
             id, name)
     VALUES (1, 'General');
@@ -176,6 +182,10 @@ INSERT INTO public.proposal(
 INSERT INTO public.proposal(
             id, content, votes, user_id, category_id)
     VALUES (2, 'Hacer un monumento', 0, 1, 1);
+
+INSERT INTO public.commentary(
+            id, content, votes, fecha, user_id, proposal_id)
+    VALUES (1, 'Buena idea el parque', 0, '2017-04-02', 2, 1);
 
 
 

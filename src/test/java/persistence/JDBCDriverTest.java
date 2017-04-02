@@ -8,7 +8,7 @@ public class JDBCDriverTest {
 
 	@Test
 	public void test() {
-		assertNotNull(JDBCDriver.getConnection());
+		assertNotNull(Database.getConnection());
 	}
 
 }

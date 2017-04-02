@@ -13,6 +13,10 @@ public class Category {
 		this.name = name;
 	}
 
+	public Category(String string) {
+		this.name = string;
+	}
+
 	public Integer getId() {
 		return id;
 	}

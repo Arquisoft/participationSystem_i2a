@@ -10,7 +10,7 @@ import java.util.List;
 
 import dto.Commentary;
 import persistence.CommentaryDao;
-import persistence.JDBCDriver;
+import persistence.Database;
 
 public class CommentaryDaoImpl implements CommentaryDao {
 
@@ -29,7 +29,7 @@ public class CommentaryDaoImpl implements CommentaryDao {
 	private static String SQL_PROPOSAL_COMMENT = "SELECT * FROM PUBLIC.COMMENTARY WHERE PROPOSAL_ID=?";
 	private static String SQL_COMMENT_ORDER_BY_DATE = "SELECT * FROM PUBLIC.COMMENTARY ORDER BY FECHA";
 	private static String SQL_FIND_COMMENT_BY_ID = "SELECT * FROM PUBLIC.COMMENTARY WHERE ID=?";
-	private Connection con = JDBCDriver.getConnection();
+	private Connection con = Database.getConnection();
 
 	@Override
 	public List<Commentary> getCommentariesFromProposalId(Integer id) {

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.Proposal;
-import persistence.JDBCDriver;
+import persistence.Database;
 import persistence.ProposalDao;
 
 public class ProposalDaoImpl implements ProposalDao {
@@ -18,7 +18,7 @@ public class ProposalDaoImpl implements ProposalDao {
 	//private static String SQL_DELETE_PROPOSAL = Conf.getInstance().getProperty("SQL_DELETE_PROPOSAL");
 	//private static String SQL_INSERT_PROPOSAL = Conf.getInstance().getProperty("SQL_INSERT_PROPOSAL");
 
-	private Connection con = JDBCDriver.getConnection();
+	private Connection con = Database.getConnection();
 
 	@Override
 	public Proposal getProposalById(Integer id) {

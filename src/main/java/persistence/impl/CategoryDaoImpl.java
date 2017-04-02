@@ -9,12 +9,13 @@ import java.util.List;
 
 import dto.Category;
 import persistence.CategoryDao;
-import persistence.JDBCDriver;
+import persistence.Database;
 
 public class CategoryDaoImpl implements CategoryDao {
 
 	private static String SQL_FIND_ALL_CATEGORIES = "SELECT * FROM PUBLIC.CATEGORY";
-	private Connection con = JDBCDriver.getConnection();
+	private static String SQL_INSERT_CATEGORY = "INSERT INTO PUBLIC.CATEGORY (NAME) VALUES (?)";
+	private Connection con = Database.getConnection();
 
 	@Override
 	public List<Category> findAllCategories() {
@@ -47,6 +48,28 @@ public class CategoryDaoImpl implements CategoryDao {
 				System.err.println(e);
 			}
 		}
+	}
+
+	@Override
+	public void createCategory(Category cat) {
+		
+		PreparedStatement pst = null;
+		try {
+			pst = con.prepareStatement(SQL_INSERT_CATEGORY);
+			pst.setString(1, cat.getName());
+
+			pst.executeUpdate();
+
+		} catch (SQLException e) {
+			System.err.println(e);
+		} finally {
+			try {
+				pst.close();
+			} catch (SQLException e) {
+				System.err.println(e);
+			}
+		}
+		
 	}
 
 }
