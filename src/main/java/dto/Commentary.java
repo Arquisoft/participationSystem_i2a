@@ -15,13 +15,28 @@ public class Commentary {
 	public Commentary() {
 	}
 
-	public Commentary(Integer idComment, String content, int votes, Date fecha, Integer proposalId, Integer usedId) {
+	public Commentary(Integer idComment, String content, Integer votes, Date fecha, Integer userID,
+			Integer proposalID) {
+		super();
+		this.id = idComment;
+		this.content = content;
+		this.votes = votes;
+		this.fecha = fecha;
+		this.proposalId = proposalID;
+		this.userId = userID;
+	}
+	
+	public Commentary(String content, int votes, Date fecha, Integer proposalId, Integer usedId) {
 		super();
 		this.content = content;
 		this.votes = votes;
 		this.fecha = fecha;
 		this.proposalId = proposalId;
 		this.userId = usedId;
+	}
+
+	public Commentary(String content, Integer propId, Integer userId) {
+		this(content, 0, new Date(), propId, userId);
 	}
 
 	public Integer getId() {

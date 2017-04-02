@@ -10,7 +10,6 @@ import java.util.List;
 import dto.Proposal;
 import persistence.JDBCDriver;
 import persistence.ProposalDao;
-import persistence.conf.Conf;
 
 public class ProposalDaoImpl implements ProposalDao {
 
@@ -26,7 +25,7 @@ public class ProposalDaoImpl implements ProposalDao {
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		try {
-			pst = con.prepareStatement("SELECT * FROM PUBLIC.PROPOSAL WHERE ID = ?");
+			pst = con.prepareStatement("SELECT * FROM PUBLIC.PROPOSAL WHERE ID=?");
 			pst.setInt(1, id);
 
 			rs = pst.executeQuery();

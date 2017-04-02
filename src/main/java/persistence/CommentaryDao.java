@@ -14,4 +14,8 @@ public interface CommentaryDao {
 
 	List<Commentary> getCommentariesByDate();
 
+	Commentary getCommentaryById(Integer parseInt);
+
+	void voteComment(Commentary comment);
+
 }
