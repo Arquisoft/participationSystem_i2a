@@ -40,7 +40,7 @@ public class MainControllerTest {
 	public void getLanding() throws Exception { 
 		URI userURI = new URI(base.toString() + "/user");  
 		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
-		assertThat(response.getBody(), containsString("proposal"));
+		assertThat(response.getBody(), containsString("Login"));
 	}
 	
 	@Test

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import dto.Category;
 import dto.Proposal;
@@ -27,9 +28,19 @@ public class MainController {
 	private List<Category> categoriesNamesList = Persistence.getCategoryDao().findAllCategories();
 	private List<Proposal> proposalList = pDao.getProposals();
 
+	@ModelAttribute
+	public AddProposal getAddProposal() {
+		return new AddProposal();
+	}
+	
+	@ModelAttribute
+	public List<Proposal> getProposals() {
+		return pDao.getProposals();
+	}
+	
 	@RequestMapping("/")
 	public String landing(Model model) {
-		model.addAttribute("createProposal", new AddProposal());
+		model.addAttribute("addProposal", new AddProposal());
 		model.addAttribute("proposals", proposalList);
 		return "/user/home"; // return "index";
 	}
@@ -48,7 +59,7 @@ public class MainController {
 	@RequestMapping("/user/home")
 	public String send(Model model) {
 		model.addAttribute("proposals", Persistence.getProposalDao().getProposals());
-		model.addAttribute("createProposal", new AddProposal());
+		model.addAttribute("addProposal", new AddProposal());
 		return "/user/home";
 	}
 
@@ -60,15 +71,15 @@ public class MainController {
 		proposal.setUserId(1);
 		proposal.setVotes(0);
 		pDao.createProposal(proposal);
-		return "/user/home";
+		return "redirect:/user/home";
 	}
 
-	@RequestMapping("/user/voteProposal/{id}")
+	@RequestMapping(value = "/user/voteProposal/{id}", method = RequestMethod.GET)
 	public String voteProposal(@PathVariable("id") String id) {
 		Proposal proposal = pDao
 				.getProposalById(Integer.parseInt(id));
 		pDao.voteProposal(proposal);
-		return "/user/home";
+		return "redirect:/user/home";
 	}
 
 	@RequestMapping("/user/commentProposal/{id}")

@@ -23,15 +23,15 @@
   	<th>Votes</th>
   	<th>Category</th>
   	<th>User</th>
-    <tr th:each="proposal : *{proposals}" th:with="proposalId=${proposal.id}">
+    <tr th:each="proposal : *{proposals}" th:with="proposalId=${proposal.getId()}">
   	    <td th:text="${proposal.content}"></td>
   	    <td th:text="${proposal.votes}" />
   	    <td th:text="${proposal.categoryId}" />
   	    <td th:text="${proposal.userId}" />
   	<td>
-	  	 <a th:href="@{'/user/voteProposal/' + ${proposalId}}">
+	  	 <a th:href="${'/user/voteProposal/'+ proposal.getId()}">
 	       Vote </a>
-	    <a th:href="@{'/user/commentProposal/' + ${proposalId}}">
+	    <a th:href="@{'/user/commentProposal/' + proposalId}">
 	       Comment </a>
     </td>
   </tr>
@@ -41,7 +41,7 @@
 
 <div class="row" style="margin-top:20px">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-		<form role="form" th:object="${addProposal}" th:action="@{/user/addProposal}">
+		<form th:action="@{/user/addProposal}" th:object="${addProposal}" method="POST">
 			<fieldset>
 				<h2>Add your proposal</h2>
 				<hr class="colorgraph"/>
@@ -57,14 +57,13 @@
 				<br/>
 				<label for="checkcat">Content:</label>
 				<div class="form-group">
-                    <textArea rows="10" type="proposal" name="proposal" id="proposal" class="form-control input-lg">
+					<textArea rows="10" type="proposal" name="text" id="text" th:field="*{text}" class="form-control input-lg">
 					</textArea>
 				</div>
 				<hr class="colorgraph"/>
 				<div class="row">
 					<div class="col-xs-6 col-sm-6 col-md-6">
-                        <input type="submit" class="btn btn-lg btn-success btn-block" value="Add proposal"
-                        	th:action="${'/user/addProposal/'}" th:method="post"/>
+                        <input type="submit" class="btn btn-lg btn-success btn-block" value="Add proposal"/>
 					</div>
 				</div>
 			</fieldset>
