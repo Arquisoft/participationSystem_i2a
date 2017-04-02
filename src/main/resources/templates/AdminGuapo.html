@@ -1,0 +1,89 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+	<style>
+	/* Credit to bootsnipp.com for the css for the color graph */
+	.colorgraph {
+	  height: 5px;
+	  border-top: 0;
+	  background: #c4e17f;
+	  border-radius: 5px;
+	  background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+	  background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+	  background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+	  background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+	}
+	body{margin:40px;}
+	
+	.btn-circle {
+	  margin-top: 10px;
+	  margin-left: 43%;
+	  width: 30px;
+	  height: 30px;
+	  text-align: center;
+	  padding: 6px 0;
+	  font-size: 12px;
+	  line-height: 1.428571429;
+	  border-radius: 15px;
+	}
+	.btn-circle.btn-lg {
+	  width: 50px;
+	  height: 50px;
+	  padding: 10px 16px;
+	  font-size: 18px;
+	  line-height: 1.33;
+	  border-radius: 25px;
+	}
+	.btn-circle.btn-xl {
+	  width: 70px;
+	  height: 70px;
+	  padding: 10px 16px;
+	  font-size: 24px;
+	  line-height: 1.33;
+	  border-radius: 35px;
+	}
+	</style>
+<title>Create proposal</title>
+</head>
+<body>
+<div class="container">
+<div class="row" style="margin-top:20px">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+		<form th:action="@{/login}" method="post">
+			<fieldset>
+				<h2>Administrator</h2>
+				<hr class="colorgraph"/>
+				<div>
+				<label for="checkcat">Add category:</label>
+				<div class="form-group">
+					<input rows="1" id="category" type="proposal" th:field="*{text}" class="form-control input-lg"/>
+					<button type="button" id="ok1" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+				</div>
+				<div>
+				<label for="checkcat">Add non-allowed words (separated by commas):</label>
+				<div class="form-group">
+					<textArea rows="1" id="words" type="proposal" th:field="*{text}" class="form-control input-lg">
+					</textArea>
+					<button type="button" id="ok2" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+				</div>
+				<br>
+				<div>
+				<label for="checkcat">Delete proposal non-appropiate proposal with id:</label>
+				<div class="form-group">
+					<input rows="1" type="proposal" id="deleteProp" th:field="*{text}" class="form-control input-lg">
+					<button type="button" id="ok3" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+				</div>
+				<label for="checkcat">Add date:</label>
+				<div class="form-group">
+					<input rows="1" type="date" id="addDate" th:field="*{text}" class="form-control input-lg"/>
+					<button type="button" id="ok4" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+				</div>
+				<br/>
+				<hr class="colorgraph"/>
+			</fieldset>
+		</form>
+	</div>
+</div>
+</div>
+</body>
+</html>
