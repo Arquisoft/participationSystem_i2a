@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+
+<body>
+<div class="container">
+<center>
+<h1>Participation System</h1>
+</center>
+<hr/>
+<br/>
+<div class="proposal">
+<h2> Proposal ${proposal.getId()}</h2>
+<h3>Proposal description:</h3>
+            <p th:text="${proposal.getContent()}"></p>
+<hr/>
+</div>
+
+  <div class="post-comments">
+    <form th:action="@{'/user/commentProposal/' + proposal.getId()}" th:object="${addComment}" method="POST">
+      <div class="form-group">
+        <label for="comment">Your Comment:</label>
+        <textarea name="comment" class="form-control" id="text" th:field="*{text}" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+  	</div>
+
+
+	
+
+</div>
+</body>
+</html>

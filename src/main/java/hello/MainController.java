@@ -58,9 +58,23 @@ public class MainController {
 
 	@RequestMapping("/user/home")
 	public String send(Model model) {
-		model.addAttribute("proposals", Persistence.getProposalDao().getProposals());
-		model.addAttribute("addProposal", new AddProposal());
+		model.addAttribute("proposals", pDao.getProposals());
 		return "/user/home";
+	}
+	
+	@RequestMapping(value = "/user/addForm", method = RequestMethod.GET)
+	public String goToForm(Model model) {
+		model.addAttribute("addProposal", new AddProposal());
+		return "/user/add-form";
+	}
+	
+	@RequestMapping(value = "/user/viewProposal/{id}", method = RequestMethod.GET)
+	public String viewProposal(Model model, @PathVariable("id") String id) {
+
+		System.out.println(id);
+		Proposal proposal = pDao.getProposalById(Integer.getInteger(id));
+		model.addAttribute("proposal", proposal);
+		return "/user/proposal";
 	}
 
 	@RequestMapping("/user/addProposal")
