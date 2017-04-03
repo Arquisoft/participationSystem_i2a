@@ -19,6 +19,11 @@ public class AddProposal {
 	public void setText(String text) {
 		this.text = text;
 	}
+	@Override
+	public String toString() {
+		return "AddProposal [category=" + category + ", text=" + text + "]";
+	}
+	
 	
 	
 }

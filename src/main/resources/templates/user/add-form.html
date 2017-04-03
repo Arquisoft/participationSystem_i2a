@@ -29,8 +29,8 @@
 				
 				<select class="form-control" th:field="*{category}">
 				  <option th:each="category : ${categoriesList}" 
-				          th:value="${category}" 
-				          th:text="{$category.name}"></option>
+				          th:value="${category.id}" 
+				          th:text="${category.name}"></option>
 				</select> 
 				
 				</span>

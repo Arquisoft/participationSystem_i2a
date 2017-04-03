@@ -121,11 +121,11 @@ public class ProposalDaoImpl implements ProposalDao {
 	public void createProposal(Proposal p) {
 		PreparedStatement pst = null;
 		try {
-			pst = con.prepareStatement("INSERT INTO PUBLIC.PROPOSAL(content, votes, user_id) VALUES (?,?,?)");
+			pst = con.prepareStatement("INSERT INTO PUBLIC.PROPOSAL(content, votes, user_id, category_id) VALUES (?,?,?, ?)");
 			pst.setString(1, p.getContent());
 			pst.setInt(2, p.getVotes());
 			pst.setInt(3, p.getUserId());
-			//pst.setInt(4, p.getCategoryId());
+			pst.setInt(4, p.getCategoryId());
 
 			pst.executeUpdate();
 

@@ -30,6 +30,7 @@ public class MainController {
 
 	private List<Proposal> proposalList = pDao.getProposals();
 
+
 	@ModelAttribute
 	public AddProposal getAddProposal() {
 		return new AddProposal();
@@ -67,6 +68,7 @@ public class MainController {
 	@RequestMapping(value = "/user/addForm", method = RequestMethod.GET)
 	public String goToForm(Model model) {
 		model.addAttribute("addProposal", new AddProposal());
+		model.addAttribute("categoriesList", Persistence.getCategoryDao().findAllCategories());
 		return "/user/add-form";
 	}
 
@@ -86,9 +88,8 @@ public class MainController {
 	@RequestMapping("/user/addProposal")
 	public String addProposal(Model model, @ModelAttribute AddProposal addProposal) {
 		Proposal proposal = new Proposal();
-		proposal.setCategory(addProposal.getCategory());
 		proposal.setContent(addProposal.getText());
-
+		proposal.setCategory(Integer.parseInt(addProposal.getCategory().getName()));
 		// TODO cambiar esto por el id del usuario loggeado
 		proposal.setUserId(1);
 		proposal.setVotes(0);
@@ -117,8 +118,8 @@ public class MainController {
 		// TODO sustituir el "1" por el id del usuario loggeado
 		Commentary comment = new Commentary(content, Integer.parseInt(id), 1);
 		cDao.createComment(comment);
-
-		return "redirect:/user/home";
+		
+		return "redirect:/user/viewProposal/" + comment.getProposalId();
 	}
 
 }

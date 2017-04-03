@@ -210,6 +210,7 @@ public class CommentaryDaoImpl implements CommentaryDao {
 	
 	public void updateComment(Commentary c){
 		PreparedStatement pst = null;
+		
 		try {
 			pst = con.prepareStatement("UPDATE PUBLIC.COMMENTARY SET CONTENT = ?, "
 					+ "VOTES = ?, FECHA = ? WHERE ID = ?");
