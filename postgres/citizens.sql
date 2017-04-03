@@ -201,9 +201,13 @@ INSERT INTO public.user(
     VALUES (2, '87654321A', 'User', 'User', 'user@email.com', 'pass', 
       '1953-06-21', 'Oviedo', 1, 'Spanish');
 
+ALTER SEQUENCE public.user_id_seq RESTART WITH 3;	 
+	  
 INSERT INTO public.category(
             id, name)
     VALUES (1, 'General');
+
+ALTER SEQUENCE public.category_id_seq RESTART WITH 2;
 
 INSERT INTO public.proposal(
             id, content, votes, user_id, category_id)
@@ -213,9 +217,12 @@ INSERT INTO public.proposal(
             id, content, votes, user_id, category_id)
     VALUES (2, 'Hacer un monumento', 0, 1, 1);
 
+ALTER SEQUENCE public.proposal_id_seq RESTART WITH 3;	
+	
 INSERT INTO public.commentary(
             id, content, votes, fecha, user_id, proposal_id)
     VALUES (1, 'Buena idea el parque', 0, '2017-04-02', 2, 1);
 
+ALTER SEQUENCE public.commentary_id_seq RESTART WITH 2;
 
 
