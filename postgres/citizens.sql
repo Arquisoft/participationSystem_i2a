@@ -168,7 +168,7 @@ INSERT INTO public.user(
 INSERT INTO public.user(
             id, dni, nombre, apellidos, email, password, nacimiento, direccion, polling, 
             nacionalidad)
-    VALUES (2, '12345678A', 'User', 'User', 'user@email.com', 'pass', 
+    VALUES (2, '87654321A', 'User', 'User', 'user@email.com', 'pass', 
       '1953-06-21', 'Oviedo', 1, 'Español');
 
 INSERT INTO public.category(
