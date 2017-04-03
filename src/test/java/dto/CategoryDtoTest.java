@@ -24,6 +24,14 @@ public class CategoryDtoTest {
 		assertEquals("blablabla", c.getName());
 		
 		assertEquals("Id: 1; Name: blablabla", c.toString());
+		
+		c = new Category("blablabla");
+		c.setId(1);
+		assertEquals("Id: 1; Name: blablabla", c.toString());
+		
+
+		c = new Category(new Integer(1), "blablabla");
+		assertEquals("Id: 1; Name: blablabla", c.toString());
 	}
 
 }

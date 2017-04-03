@@ -35,6 +35,10 @@ public class ProposalDtoTest {
 		
 		assertEquals("Id: 1; Content: Blablabla; Votes: 1; Category: 1; User: 1", p.toString());
 		
+		p = new Proposal("Blablabla", 1, new Integer(1), new Integer(1));
+		p.setId(new Integer(1));
+		assertEquals("Id: 1; Content: Blablabla; Votes: 1; Category: 1; User: 1", p.toString());
+		
 	}
 
 }
