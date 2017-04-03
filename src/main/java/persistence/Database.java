@@ -33,17 +33,17 @@ public class Database {
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
 		try {
-			User user = new User("76756556E", "admin", "admin", format.parse("13/05/1967"), "C/ Uría, 9",
-					"admin@email.com", "Español", 0);
+			User user = new User("76756556E", "admin", "admin", format.parse("13/05/1967"), "C/ Uria, 9",
+					"admin@email.com", "Spanish", 0);
 			uDao.createUser(user);
-			user = new User("798431467A", "Carlos", "Fernández", format.parse("13/05/1967"), "C/ Uría, 3",
-					"carlos@email.com", "Español", 3);
+			user = new User("798431467A", "Carlos", "Fernández", format.parse("13/05/1967"), "C/ Uria, 3",
+					"carlos@email.com", "Spanish", 3);
 			uDao.createUser(user);
 			user = new User("9172457631Y", "María", "Pérez", format.parse("26/12/1984"), "C/ Ayala, 6",
-					"maria@email.com", "Español", 1);
+					"maria@email.com", "Spanish", 1);
 			uDao.createUser(user);
 			user = new User("718346981R", "Simon", "Neil", format.parse("31/08/1979"), "C/ Biffy, 3",
-					"simon@email.com", "Británico", 2);
+					"simon@email.com", "British", 2);
 			uDao.createUser(user);
 			
 			Category cat = new Category("General");

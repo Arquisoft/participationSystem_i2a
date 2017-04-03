@@ -16,7 +16,7 @@ public class UserPersistenceTest {
 	public void testFindById() throws ParseException {
 		Date simpleDate = new SimpleDateFormat("dd/MM/yyyy").parse("25/03/1950");
 		
-		User user = new User("12345678A", "Pepe", "Calleja", simpleDate, "Oviedo", "calleja@email.com", "Español", 2);
+		User user = new User("12345678A", "Pepe", "Calleja", simpleDate, "Oviedo", "calleja@email.com", "Spanish", 2);
 		user.setId(1);
 		user.setPassword("password");
 		

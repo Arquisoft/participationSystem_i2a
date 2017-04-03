@@ -193,13 +193,13 @@ INSERT INTO public.user(
             id, dni, nombre, apellidos, email, password, nacimiento, direccion, polling, 
             nacionalidad)
     VALUES (1, '12345678A', 'Pepe', 'Calleja', 'calleja@email.com', 'password1234', 
-      '1950-03-25', 'Oviedo', 2, 'Español');
+      '1950-03-25', 'Oviedo', 2, 'Spanish');
 
 INSERT INTO public.user(
             id, dni, nombre, apellidos, email, password, nacimiento, direccion, polling, 
             nacionalidad)
     VALUES (2, '87654321A', 'User', 'User', 'user@email.com', 'pass', 
-      '1953-06-21', 'Oviedo', 1, 'Español');
+      '1953-06-21', 'Oviedo', 1, 'Spanish');
 
 INSERT INTO public.category(
             id, name)
