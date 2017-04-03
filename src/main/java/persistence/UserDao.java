@@ -11,4 +11,6 @@ public interface UserDao {
 	void createUser(User user);
 
 	List<String> findAllEmails();
+
+	User getUserByEmail(String email);
 }

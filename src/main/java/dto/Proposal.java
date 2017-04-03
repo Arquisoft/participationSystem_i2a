@@ -1,5 +1,7 @@
 package dto;
 
+import persistence.Persistence;
+
 public class Proposal {
 	private Integer id;
 	private String content;
@@ -54,6 +56,11 @@ public class Proposal {
 
 	public Integer getCategoryId() {
 		return categoryId;
+	}
+	
+	public String getCategoryName(){
+		Category cat = Persistence.getCategoryDao().getCategoryById(categoryId);
+		return cat.getName();
 	}
 
 	public void setCategory(Integer categoryId) {

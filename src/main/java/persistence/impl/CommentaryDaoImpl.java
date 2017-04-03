@@ -24,11 +24,11 @@ public class CommentaryDaoImpl implements CommentaryDao {
 	// private static String SQL_PROPOSAL_COMMENT =
 	// Conf.getInstance().getProperty("SQL_PROPOSAL_COMMENT");
 
-	private static String SQL_COMMENT_ORDER_BY_POPULARITY = "SELECT * FROM PUBLIC.COMMENTARY ORDER BY VOTES";
+	private static String SQL_COMMENT_ORDER_BY_POPULARITY = "SELECT * FROM PUBLIC.COMMENTARY WHERE PROPOSAL_ID=? ORDER BY VOTES DESC";
 	private static String SQL_INSERT_COMMENT = "INSERT INTO PUBLIC.COMMENTARY (content, votes, fecha, user_id, proposal_id) "
 			+ "VALUES (?, ?, ?, ?, ?)";
 	private static String SQL_PROPOSAL_COMMENT = "SELECT * FROM PUBLIC.COMMENTARY WHERE PROPOSAL_ID=?";
-	private static String SQL_COMMENT_ORDER_BY_DATE = "SELECT * FROM PUBLIC.COMMENTARY ORDER BY FECHA";
+	private static String SQL_COMMENT_ORDER_BY_DATE = "SELECT * FROM PUBLIC.COMMENTARY WHERE PROPOSAL_ID=? ORDER BY FECHA DESC";
 	private static String SQL_FIND_COMMENT_BY_ID = "SELECT * FROM PUBLIC.COMMENTARY WHERE ID=?";
 	private Connection con = Database.getConnection();
 
@@ -99,13 +99,13 @@ public class CommentaryDaoImpl implements CommentaryDao {
 	}
 
 	@Override
-	public List<Commentary> getCommentariesByDate() {
+	public List<Commentary> getCommentariesFromProposalIdOrderedByDate(Integer id) {
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		List<Commentary> comments = new ArrayList<Commentary>();
 		try {
 			pst = con.prepareStatement(SQL_COMMENT_ORDER_BY_DATE);
-
+			pst.setInt(1, id);
 			rs = pst.executeQuery();
 			while (rs.next()) {
 
@@ -135,42 +135,6 @@ public class CommentaryDaoImpl implements CommentaryDao {
 		}
 	}
 
-	@Override
-	public List<Commentary> getCommentariesByPopularity() {
-		PreparedStatement pst = null;
-		ResultSet rs = null;
-		List<Commentary> comments = new ArrayList<Commentary>();
-		try {
-			pst = con.prepareStatement(SQL_COMMENT_ORDER_BY_POPULARITY);
-
-			rs = pst.executeQuery();
-			while (rs.next()) {
-
-				Integer idComment = rs.getInt("id");
-				String content = rs.getString("content");
-				Integer votes = rs.getInt("votes");
-				Date fecha = rs.getDate("fecha");
-				Integer userID = rs.getInt("user_id");
-				Integer proposalID = rs.getInt("proposal_id");
-
-				Commentary comment = new Commentary(idComment, content, votes, fecha, userID, proposalID);
-
-				comments.add(comment);
-			}
-			return comments;
-
-		} catch (SQLException e) {
-			System.err.println(e);
-			return null;
-		} finally {
-			try {
-				rs.close();
-				pst.close();
-			} catch (SQLException e) {
-				System.err.println(e);
-			}
-		}
-	}
 
 	@Override
 	public Commentary getCommentaryById(Integer id) {
@@ -230,6 +194,43 @@ public class CommentaryDaoImpl implements CommentaryDao {
 			System.err.println(e);
 		} finally {
 			try {
+				pst.close();
+			} catch (SQLException e) {
+				System.err.println(e);
+			}
+		}
+	}
+
+	@Override
+	public List<Commentary> getCommentariesFromProposalIdOrderedByPopularity(Integer idInt) {
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		List<Commentary> comments = new ArrayList<Commentary>();
+		try {
+			pst = con.prepareStatement(SQL_COMMENT_ORDER_BY_POPULARITY);
+			pst.setInt(1, idInt);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+
+				Integer idComment = rs.getInt("id");
+				String content = rs.getString("content");
+				Integer votes = rs.getInt("votes");
+				Date fecha = rs.getDate("fecha");
+				Integer userID = rs.getInt("user_id");
+				Integer proposalID = rs.getInt("proposal_id");
+
+				Commentary comment = new Commentary(idComment, content, votes, fecha, userID, proposalID);
+
+				comments.add(comment);
+			}
+			return comments;
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			return null;
+		} finally {
+			try {
+				rs.close();
 				pst.close();
 			} catch (SQLException e) {
 				System.err.println(e);

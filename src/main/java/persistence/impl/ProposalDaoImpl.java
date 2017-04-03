@@ -102,15 +102,6 @@ public class ProposalDaoImpl implements ProposalDao {
 		}
 	}
 
-	/*
-	 * @Override public void deleteProposalById(Integer id) { PreparedStatement
-	 * pst = null; try { pst = con.prepareStatement(SQL_DELETE_PROPOSAL);
-	 * pst.setInt(1, id); pst.executeUpdate();
-	 * 
-	 * } catch (SQLException e) { System.err.println(e); } finally { try {
-	 * pst.close(); } catch (SQLException e) { System.err.println(e); } } }
-	 */
-
 	@Override
 	public void createProposal(Proposal p) throws Exception {
 		PreparedStatement pst = null;
@@ -173,8 +164,26 @@ public class ProposalDaoImpl implements ProposalDao {
 
 	@Override
 	public void deleteProposalById(Integer id) {
-		// TODO Auto-generated method stub
+		PreparedStatement pst = null;
+		try {
+			pst = con.prepareStatement("DELETE FROM PUBLIC.COMMENTARY WHERE PROPOSAL_ID=?");
+			pst.setInt(1, id);
+			pst.executeUpdate();
+			pst.close();
+			
+			pst = con.prepareStatement("DELETE FROM PUBLIC.PROPOSAL WHERE ID=?");
+			pst.setInt(1, id);
+			pst.executeUpdate();
 
+		} catch (SQLException e) {
+			System.err.println(e);
+		} finally {
+			try {
+				pst.close();
+			} catch (SQLException e) {
+				System.err.println(e);
+			}
+		}
 	}
 
 }

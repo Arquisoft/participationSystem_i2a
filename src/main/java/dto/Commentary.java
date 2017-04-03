@@ -3,6 +3,8 @@ package dto;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import persistence.Persistence;
+
 public class Commentary {
 	private Integer id;
 
@@ -81,6 +83,11 @@ public class Commentary {
 
 	public Integer getUserId() {
 		return userId;
+	}
+	
+	public String getUserName(){
+		User user = Persistence.getUserDao().getUserById(userId);
+		return user.getFirstName() + " " + user.getLastName();
 	}
 
 	public void setUserId(Integer userId) {

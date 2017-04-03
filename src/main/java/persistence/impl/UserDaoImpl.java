@@ -17,6 +17,7 @@ public class UserDaoImpl implements UserDao {
 	// Conf.getInstance().getProperty("SQL_FIND_USER_BY_ID");
 
 	private static String SQL_FIND_USER_BY_ID = "SELECT * FROM PUBLIC.USER WHERE ID=?";
+	private static String SQL_FIND_USER_BY_EMAIL = "SELECT * FROM PUBLIC.USER WHERE EMAIL=?";
 	private static String SQL_FIND_ALL_EMAILS = "SELECT EMAIL FROM PUBLIC.USER";
 	private static String SQL_INSERT_USER = "INSERT INTO USER (dni, nombre, apellidos, "
 			+ "password, email, nacimiento, direccion, nacionalidad, polling) "
@@ -126,5 +127,48 @@ public class UserDaoImpl implements UserDao {
 			}
 		}
 
+	}
+
+	@Override
+	public User getUserByEmail(String email) {
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		try {
+			pst = con.prepareStatement(SQL_FIND_USER_BY_EMAIL);
+			pst.setString(1, email);
+
+			rs = pst.executeQuery();
+			rs.next();
+
+			Integer idBase = rs.getInt("id");
+			String dni = rs.getString("dni");
+			String name = rs.getString("nombre");
+			String surname = rs.getString("apellidos");
+			String emailEste = rs.getString("email");
+			Date birth = rs.getDate("nacimiento");
+			String nationality = rs.getString("nacionalidad");
+			String address = rs.getString("direccion");
+			int polling = rs.getInt("polling");
+			String pass = rs.getString("password");
+
+			User user = new User(dni, name, surname, birth, address, emailEste, nationality, polling);
+			user.setId(idBase);
+			user.setPassword(pass);
+
+			return user;
+
+		} catch (SQLException e) {
+			System.err.println(e);
+			return null;
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pst != null)
+					pst.close();
+			} catch (SQLException e) {
+				System.err.println(e);
+			}
+		}
 	}
 }

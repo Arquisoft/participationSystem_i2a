@@ -74,7 +74,11 @@
 				<form th:action="@{/deleteProposal}" th:object="${controlAdmin}" method="post">
 				<label for="checkcat">Delete proposal non-appropiate proposal with id:</label>
 				<div class="form-group">
-					<input rows="1" type="text" id="proposal" th:field="*{proposal}" class="form-control input-lg"/>
+				<select class="form-control" th:field="*{proposal}">
+				  <option th:each="proposal : ${proposals}" 
+				          th:value="${proposal.id}" 
+				          th:text="${proposal.content}"></option>
+				</select> 
 					<button type="submit" id="ok3" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
 				</div>
 			</form>

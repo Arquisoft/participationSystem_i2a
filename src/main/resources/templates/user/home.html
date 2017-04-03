@@ -45,7 +45,7 @@
 					  	<th></th>
 						<tr th:each="proposal : *{proposals}" th:with="proposalId=${proposal.getId()}">
 							  	    <td class="text-center" th:text="${proposal.content}"/>
-							  	    <td class="text-center" th:text="${proposal.categoryId}"/>
+							  	    <td class="text-center" th:text="${proposal.getCategoryName()}"/>
 							  	    <td class="text-center" th:text="${proposal.votes}"/>
 							  	<td class="text-center">
 							  	<a th:href="${'/user/voteProposal/'+ proposal.getId()}" 
