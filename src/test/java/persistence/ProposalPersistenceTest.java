@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import dto.Proposal;
 
-public class ProposalTest {
+public class ProposalPersistenceTest {
 	private ProposalDao pDao = Persistence.getProposalDao();
 
 	@Test

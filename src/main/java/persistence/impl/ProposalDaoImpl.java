@@ -46,7 +46,7 @@ public class ProposalDaoImpl implements ProposalDao {
 			proposal.setVotes(votes);
 			proposal.setUserId(userID);
 			proposal.setContent(content);
-			proposal.setCategory(category_id);
+			proposal.setCategoryId(category_id);
 			proposal.setId(idProp);
 
 			return proposal;

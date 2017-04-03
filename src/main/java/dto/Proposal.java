@@ -63,7 +63,7 @@ public class Proposal {
 		return cat.getName();
 	}
 
-	public void setCategory(Integer categoryId) {
+	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
 	}
 
@@ -77,7 +77,7 @@ public class Proposal {
 
 	@Override
 	public String toString() {
-		return "Content: " + content + "; Votes: " + votes + "; "
+		return "Id: " + id + "; Content: " + content + "; Votes: " + votes + "; "
 				+ "Category: " + categoryId + "; User: " + userId;
 
 	}

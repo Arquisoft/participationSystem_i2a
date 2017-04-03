@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import dto.Commentary;
 
-public class CommentTest {
+public class CommentPersistenceTest {
 	private CommentaryDao cDao = Persistence.getCommentaryDao();
 
 	@Test

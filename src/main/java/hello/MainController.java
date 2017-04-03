@@ -106,7 +106,7 @@ public class MainController {
 	public String addProposal(Model model, @ModelAttribute AddProposal addProposal) {
 		Proposal proposal = new Proposal();
 		proposal.setContent(addProposal.getText());
-		proposal.setCategory(Integer.parseInt(addProposal.getCategory().getName()));
+		proposal.setCategoryId(Integer.parseInt(addProposal.getCategory().getName()));
 		proposal.setUserId(user.getId());
 		proposal.setVotes(0);
 		try {

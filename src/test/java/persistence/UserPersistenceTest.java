@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import dto.User;
 
-public class UserTest {
+public class UserPersistenceTest {
 	UserDao dao = Persistence.getUserDao();
 
 	@Test
