@@ -9,6 +9,7 @@ public class ControlAdmin {
 	private String text;
 	private List<String> palabras = new ArrayList<>();
 	private String category;
+	private String proposal;
 	
 	public String getText() {
 		return text;
@@ -32,6 +33,12 @@ public class ControlAdmin {
 	}
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	public String getProposal() {
+		return proposal;
+	}
+	public void setProposal(String proposal) {
+		this.proposal = proposal;
 	}
 	
 	

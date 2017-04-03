@@ -3,7 +3,6 @@ package hello;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -110,8 +109,8 @@ public class MainController {
 		try {
 			pDao.createProposal(proposal);
 		} catch (Exception e) {
-			//TODO
 			System.out.println("funca bien");
+			return "/error";
 		}
 		return "redirect:/user/home";
 	}
@@ -139,7 +138,7 @@ public class MainController {
 		try {
 			cDao.createComment(comment);
 		} catch (Exception e) {
-			// TODO
+			return "/error";
 		}
 		
 		return "redirect:/user/viewProposal/" + comment.getProposalId();
@@ -156,6 +155,18 @@ public class MainController {
 	public String addNotAllowedWords(Model model, @ModelAttribute ControlAdmin controlAdmin) {
 		Persistence.getWordDao().add(controlAdmin.getPalabras());
 		return "/admin";
+	}
+	
+	@RequestMapping("/deleteProposal")
+	public String deleteProposal(Model model, @ModelAttribute ControlAdmin controlAdmin) {
+		System.out.println(controlAdmin.getProposal());
+		Persistence.getProposalDao().deleteProposalById(Integer.parseInt(controlAdmin.getProposal()));
+		return "/admin";
+	}
+	
+	@RequestMapping("/error")
+	public String error(Model model) {
+		return "error";
 	}
 
 }
