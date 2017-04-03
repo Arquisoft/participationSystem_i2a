@@ -8,7 +8,7 @@ public interface CommentaryDao {
 
 	List<Commentary> getCommentariesFromProposalId(Integer id);
 
-	void createComment(Commentary p);
+	void createComment(Commentary p) throws Exception;
 
 	List<Commentary> getCommentariesByPopularity();
 

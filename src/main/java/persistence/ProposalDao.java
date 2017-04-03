@@ -12,7 +12,7 @@ public interface ProposalDao {
 
 	void deleteProposalById(Integer id);
 
-	void createProposal(Proposal p);
+	void createProposal(Proposal p) throws Exception;
 
 	void voteProposal(Proposal proposal);
 	

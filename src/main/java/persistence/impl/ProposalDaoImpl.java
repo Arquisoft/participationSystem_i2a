@@ -9,14 +9,19 @@ import java.util.List;
 
 import dto.Proposal;
 import persistence.Database;
+import persistence.Persistence;
 import persistence.ProposalDao;
 
 public class ProposalDaoImpl implements ProposalDao {
 
-//	private static String SQL_FIND_PROPOSAL_BY_ID = Conf.getInstance().getProperty("SQL_FIND_PROPOSAL_BY_ID");
-	//private static String SQL_ALL_PROPOSALS = Conf.getInstance().getProperty("SQL_ALL_PROPOSALS");
-	//private static String SQL_DELETE_PROPOSAL = Conf.getInstance().getProperty("SQL_DELETE_PROPOSAL");
-	//private static String SQL_INSERT_PROPOSAL = Conf.getInstance().getProperty("SQL_INSERT_PROPOSAL");
+	// private static String SQL_FIND_PROPOSAL_BY_ID =
+	// Conf.getInstance().getProperty("SQL_FIND_PROPOSAL_BY_ID");
+	// private static String SQL_ALL_PROPOSALS =
+	// Conf.getInstance().getProperty("SQL_ALL_PROPOSALS");
+	// private static String SQL_DELETE_PROPOSAL =
+	// Conf.getInstance().getProperty("SQL_DELETE_PROPOSAL");
+	// private static String SQL_INSERT_PROPOSAL =
+	// Conf.getInstance().getProperty("SQL_INSERT_PROPOSAL");
 
 	private Connection con = Database.getConnection();
 
@@ -98,36 +103,32 @@ public class ProposalDaoImpl implements ProposalDao {
 	}
 
 	/*
+	 * @Override public void deleteProposalById(Integer id) { PreparedStatement
+	 * pst = null; try { pst = con.prepareStatement(SQL_DELETE_PROPOSAL);
+	 * pst.setInt(1, id); pst.executeUpdate();
+	 * 
+	 * } catch (SQLException e) { System.err.println(e); } finally { try {
+	 * pst.close(); } catch (SQLException e) { System.err.println(e); } } }
+	 */
+
 	@Override
-	public void deleteProposalById(Integer id) {
+	public void createProposal(Proposal p) throws Exception {
 		PreparedStatement pst = null;
 		try {
-			pst = con.prepareStatement(SQL_DELETE_PROPOSAL);
-			pst.setInt(1, id);
-			pst.executeUpdate();
 
-		} catch (SQLException e) {
-			System.err.println(e);
-		} finally {
-			try {
-				pst.close();
-			} catch (SQLException e) {
-				System.err.println(e);
+			if (Persistence.getWordDao().checkContent(p.getContent())) {
+
+				pst = con.prepareStatement(
+						"INSERT INTO PUBLIC.PROPOSAL(content, votes, user_id, category_id) VALUES (?,?,?, ?)");
+				pst.setString(1, p.getContent());
+				pst.setInt(2, p.getVotes());
+				pst.setInt(3, p.getUserId());
+				pst.setInt(4, p.getCategoryId());
+
+				pst.executeUpdate();
+			} else {
+				throw new Exception("Hay palabras no permitidas");
 			}
-		}
-	}*/
-
-	@Override
-	public void createProposal(Proposal p) {
-		PreparedStatement pst = null;
-		try {
-			pst = con.prepareStatement("INSERT INTO PUBLIC.PROPOSAL(content, votes, user_id, category_id) VALUES (?,?,?, ?)");
-			pst.setString(1, p.getContent());
-			pst.setInt(2, p.getVotes());
-			pst.setInt(3, p.getUserId());
-			pst.setInt(4, p.getCategoryId());
-
-			pst.executeUpdate();
 
 		} catch (SQLException e) {
 			System.err.println(e);
@@ -144,18 +145,18 @@ public class ProposalDaoImpl implements ProposalDao {
 	public void voteProposal(Proposal p) {
 		p.setVotes(p.getVotes() + 1);
 		updateProposal(p);
-		
+
 	}
-	
-	public void updateProposal(Proposal p){
+
+	public void updateProposal(Proposal p) {
 		PreparedStatement pst = null;
 		try {
-			pst = con.prepareStatement("UPDATE PUBLIC.PROPOSAL SET CONTENT = ?, VOTES = ?, CATEGORY_ID = ?"
-					+ "WHERE ID = ?");
+			pst = con.prepareStatement(
+					"UPDATE PUBLIC.PROPOSAL SET CONTENT = ?, VOTES = ?, CATEGORY_ID = ?" + "WHERE ID = ?");
 			pst.setString(1, p.getContent());
 			pst.setInt(2, p.getVotes());
 			pst.setInt(3, p.getCategoryId());
-			pst.setInt(4,  p.getId());
+			pst.setInt(4, p.getId());
 
 			pst.executeUpdate();
 
@@ -173,7 +174,7 @@ public class ProposalDaoImpl implements ProposalDao {
 	@Override
 	public void deleteProposalById(Integer id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

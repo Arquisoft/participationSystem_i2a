@@ -158,6 +158,23 @@ WITH (
 ALTER TABLE public.commentary
   OWNER TO postgres;
 
+  
+-- Table: public.words
+
+-- DROP TABLE public.words;
+
+CREATE TABLE public.words
+(
+  word text,
+  id integer NOT NULL DEFAULT nextval('words_id_seq'::regclass),
+  CONSTRAINT words_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.words
+  OWNER TO postgres;
+
 
 INSERT INTO public.user(
             id, dni, nombre, apellidos, email, password, nacimiento, direccion, polling, 

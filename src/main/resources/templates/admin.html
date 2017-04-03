@@ -49,39 +49,44 @@
 <div class="container">
 <div class="row" style="margin-top:20px">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-		<form th:action="@{/login}" method="post">
 			<fieldset>
 				<h2>Administrator</h2>
 				<hr class="colorgraph"/>
 				<div>
+				<form th:action="@{/addCategory}" th:object="${controlAdmin}" method="post">
 				<label for="checkcat">Add category:</label>
 				<div class="form-group">
-					<input rows="1" id="category" type="proposal" th:field="*{text}" class="form-control input-lg"/>
-					<button type="button" id="ok1" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+					<input rows="1" id="category" th:field="*{category}" class="form-control input-lg"/>
+					<button type="submit" id="ok1" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
 				</div>
-				<div>
+				</form>
+				</div>
+				<form th:action="@{/addNotAllowedWords}" th:object="${controlAdmin}" method="post">
 				<label for="checkcat">Add non-allowed words (separated by commas):</label>
 				<div class="form-group">
 					<textArea rows="1" id="words" type="proposal" th:field="*{text}" class="form-control input-lg">
 					</textArea>
-					<button type="button" id="ok2" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+					<button type="submit" id="ok2" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
 				</div>
-				<br>
-				<div>
+				</form>
+				<br/>
+			<!--	<div>
+				<form th:action="@{/login}" method="post">
 				<label for="checkcat">Delete proposal non-appropiate proposal with id:</label>
 				<div class="form-group">
-					<input rows="1" type="proposal" id="deleteProp" th:field="*{text}" class="form-control input-lg">
-					<button type="button" id="ok3" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+					<input rows="1" type="proposal" id="deleteProp" th:field="*{text}" class="form-control input-lg"/>
+					<button type="submit" id="ok3" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
 				</div>
-				<label for="checkcat">Add date:</label>
+			</form>
+			<label for="checkcat">Add date:</label>
 				<div class="form-group">
 					<input rows="1" type="date" id="addDate" th:field="*{text}" class="form-control input-lg"/>
-					<button type="button" id="ok4" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
-				</div>
+					<button type="submit" id="ok4" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button>
+				</div> 
+				</div> -->
 				<br/>
 				<hr class="colorgraph"/>
 			</fieldset>
-		</form>
 	</div>
 </div>
 </div>

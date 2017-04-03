@@ -11,6 +11,7 @@ import java.util.List;
 import dto.Commentary;
 import persistence.CommentaryDao;
 import persistence.Database;
+import persistence.Persistence;
 
 public class CommentaryDaoImpl implements CommentaryDao {
 
@@ -70,17 +71,21 @@ public class CommentaryDaoImpl implements CommentaryDao {
 	}
 
 	@Override
-	public void createComment(Commentary p) {
+	public void createComment(Commentary p) throws Exception {
 		PreparedStatement pst = null;
 		try {
-			pst = con.prepareStatement(SQL_INSERT_COMMENT);
-			pst.setString(1, p.getContent());
-			pst.setInt(2, p.getVotes());
-			pst.setDate(3, new java.sql.Date(p.getFecha().getTime()));
-			pst.setInt(4, p.getUserId());
-			pst.setInt(5, p.getProposalId());
+			if (Persistence.getWordDao().checkContent(p.getContent())) {
+				pst = con.prepareStatement(SQL_INSERT_COMMENT);
+				pst.setString(1, p.getContent());
+				pst.setInt(2, p.getVotes());
+				pst.setDate(3, new java.sql.Date(p.getFecha().getTime()));
+				pst.setInt(4, p.getUserId());
+				pst.setInt(5, p.getProposalId());
 
-			pst.executeUpdate();
+				pst.executeUpdate();
+			} else {
+				throw new Exception("Hay palabras no permitidas");
+			}
 
 		} catch (SQLException e) {
 			System.err.println(e);
@@ -207,17 +212,17 @@ public class CommentaryDaoImpl implements CommentaryDao {
 		c.setVotes(c.getVotes() + 1);
 		updateComment(c);
 	}
-	
-	public void updateComment(Commentary c){
+
+	public void updateComment(Commentary c) {
 		PreparedStatement pst = null;
-		
+
 		try {
-			pst = con.prepareStatement("UPDATE PUBLIC.COMMENTARY SET CONTENT = ?, "
-					+ "VOTES = ?, FECHA = ? WHERE ID = ?");
+			pst = con.prepareStatement(
+					"UPDATE PUBLIC.COMMENTARY SET CONTENT = ?, " + "VOTES = ?, FECHA = ? WHERE ID = ?");
 			pst.setString(1, c.getContent());
 			pst.setInt(2, c.getVotes());
 			pst.setDate(3, new java.sql.Date(c.getFecha().getTime()));
-			pst.setInt(4,  c.getId());
+			pst.setInt(4, c.getId());
 
 			pst.executeUpdate();
 

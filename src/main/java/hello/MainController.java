@@ -3,6 +3,8 @@ package hello;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,10 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import dto.Category;
 import dto.Commentary;
 import dto.Proposal;
 import hello.model.AddComment;
 import hello.model.AddProposal;
+import hello.model.ControlAdmin;
 import hello.producers.KafkaProducer;
 import persistence.CommentaryDao;
 import persistence.Persistence;
@@ -45,6 +49,9 @@ public class MainController {
 	public String landing(Model model) {
 		model.addAttribute("addProposal", new AddProposal());
 		model.addAttribute("proposals", proposalList);
+		model.addAttribute("controlAdmin", new ControlAdmin());
+		if(SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ADMIN]"))
+			return "/admin";
 		return "/user/home"; // return "index";
 	}
 
@@ -64,6 +71,13 @@ public class MainController {
 		model.addAttribute("proposals", pDao.getProposals());
 		return "/user/home";
 	}
+	
+	@RequestMapping("/admin")
+	public String go(Model model) {
+		model.addAttribute("controlAdmin", new ControlAdmin());
+		return "/admin";
+	}
+
 
 	@RequestMapping(value = "/user/addForm", method = RequestMethod.GET)
 	public String goToForm(Model model) {
@@ -93,7 +107,12 @@ public class MainController {
 		// TODO cambiar esto por el id del usuario loggeado
 		proposal.setUserId(1);
 		proposal.setVotes(0);
-		pDao.createProposal(proposal);
+		try {
+			pDao.createProposal(proposal);
+		} catch (Exception e) {
+			//TODO
+			System.out.println("funca bien");
+		}
 		return "redirect:/user/home";
 	}
 
@@ -117,9 +136,26 @@ public class MainController {
 
 		// TODO sustituir el "1" por el id del usuario loggeado
 		Commentary comment = new Commentary(content, Integer.parseInt(id), 1);
-		cDao.createComment(comment);
+		try {
+			cDao.createComment(comment);
+		} catch (Exception e) {
+			// TODO
+		}
 		
 		return "redirect:/user/viewProposal/" + comment.getProposalId();
+	}
+	
+	@RequestMapping("/addCategory")
+	public String addCategory(Model model, @ModelAttribute ControlAdmin controlAdmin) {
+		Category category = new Category(controlAdmin.getCategory());
+		Persistence.getCategoryDao().createCategory(category);
+		return "/admin";
+	}
+	
+	@RequestMapping("/addNotAllowedWords")
+	public String addNotAllowedWords(Model model, @ModelAttribute ControlAdmin controlAdmin) {
+		Persistence.getWordDao().add(controlAdmin.getPalabras());
+		return "/admin";
 	}
 
 }

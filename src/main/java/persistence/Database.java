@@ -29,7 +29,7 @@ public class Database {
 		}
 	}
 
-	public static void buildDatabase() {
+	public static void buildDatabase() throws Exception {
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
 		try {
