@@ -72,7 +72,7 @@
 				<br/>
 				<div>
 				<form th:action="@{/deleteProposal}" th:object="${controlAdmin}" method="post">
-				<label for="checkcat">Delete proposal non-appropiate proposal with id:</label>
+				<label for="checkcat">Delete proposal:</label>
 				<div class="form-group">
 				<select class="form-control" th:field="*{proposal}">
 				  <option th:each="proposal : ${proposals}" 
@@ -93,6 +93,7 @@
 			</fieldset>
 	</div>
 </div>
+<a href="/logout" class="btn btn-primary"><i class="icon-home icon-white"></i>Logout</a>
 </div>
 </body>
 </html>

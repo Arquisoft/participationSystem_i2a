@@ -31,8 +31,6 @@ public class MainController {
 
 	private ProposalDao pDao = Persistence.getProposalDao();
 	private CommentaryDao cDao = Persistence.getCommentaryDao();
-
-	private List<Proposal> proposalList = pDao.getProposals();
 	private User user;
 
 	@ModelAttribute
@@ -48,18 +46,24 @@ public class MainController {
 	@RequestMapping("/")
 	public String landing(Model model) {
 		model.addAttribute("addProposal", new AddProposal());
-		model.addAttribute("proposals", proposalList);
+		model.addAttribute("proposals", pDao.getProposals());
 		model.addAttribute("controlAdmin", new ControlAdmin());
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
 		this.user = Persistence.getUserDao().getUserByEmail(email);
 		
 		if (SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_ADMIN]"))
 			return "/admin";
-		return "/user/home"; // return "index";
+		return "/user/home";
 	}
 
 	@RequestMapping("/login")
 	public String login(Model model) {
+		return "login";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(Model model) {
+		SecurityContextHolder.clearContext();
 		return "login";
 	}
 
@@ -164,6 +168,7 @@ public class MainController {
 		Persistence.getProposalDao().deleteProposalById(Integer.parseInt(controlAdmin.getProposal()));
 
 		model.addAttribute("controlAdmin", new ControlAdmin());
+		model.addAttribute("proposals", pDao.getProposals());
 		return "/admin";
 	}
 
