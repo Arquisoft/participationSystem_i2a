@@ -54,15 +54,15 @@ public class UserDtoTest {
 		assertEquals(format.parse("17/03/1967"), u.getBirthdate());
 
 		assertEquals(
-				"Id: 1; Name: name; Surname: surname; Email: email; Birth date: 17/03/1967;"
-				+ " Address: address; Nationality: nation; DNI: dni; Polling station: 2",
+				"User[Id: 1; Name: name; Surname: surname; Email: email; Birth date: 17/03/1967;"
+				+ " Address: address; Nationality: nation; DNI: dni; Polling station: 2]",
 				u.toString());
 		
 		u = new User("dni", "name", "surname", format.parse("17/03/1967"), "address", "email", "nation", 2);
 		u.setId(new Integer(1));
 		assertEquals(
-				"Id: 1; Name: name; Surname: surname; Email: email; Birth date: 17/03/1967;"
-				+ " Address: address; Nationality: nation; DNI: dni; Polling station: 2",
+				"User[Id: 1; Name: name; Surname: surname; Email: email; Birth date: 17/03/1967;"
+				+ " Address: address; Nationality: nation; DNI: dni; Polling station: 2]",
 				u.toString());
 	}
 

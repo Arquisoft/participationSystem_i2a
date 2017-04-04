@@ -102,8 +102,8 @@ public class Commentary {
 	@Override
 	public String toString() {
 		String simpleDate = new SimpleDateFormat("dd/MM/yyyy").format(fecha);
-		return "Id: " + id + "; Content: " + content + "; Votes: " + votes + "; " + "Date: " + simpleDate + "; Proposal: " + proposalId
-				+ "; User: " + userId;
+		return "Commentary[Id: " + id + "; Content: " + content + "; Votes: " + votes + "; " + "Date: " + simpleDate + "; Proposal: " + proposalId
+				+ "; User: " + userId +"]";
 
 	}
 }

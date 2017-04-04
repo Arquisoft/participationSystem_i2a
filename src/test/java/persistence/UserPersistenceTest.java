@@ -23,7 +23,7 @@ public class UserPersistenceTest {
 		User found = dao.getUserById(1);
 		System.out.println(found);
 		System.out.println(user);
-		Assert.assertEquals(user, found);
+		Assert.assertEquals(user.toString(), found.toString());
 	}
 
 }

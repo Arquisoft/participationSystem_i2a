@@ -94,7 +94,7 @@ public class MainController {
 		Integer idInt = Integer.parseInt(id);
 		Proposal proposal = pDao.getProposalById(idInt);
 		List<Commentary> commentsList = cDao.getCommentariesFromProposalId(idInt);
-
+		
 		model.addAttribute("proposal", proposal);
 		model.addAttribute("commentsList", commentsList);
 		model.addAttribute("addComment", new AddComment());
@@ -111,6 +111,7 @@ public class MainController {
 		proposal.setVotes(0);
 		try {
 			pDao.createProposal(proposal);
+			kafkaProducer.send("addedProposal", proposal.toString());
 		} catch (Exception e) {
 			System.out.println("funca bien");
 			return "/mensajeError";
@@ -122,6 +123,7 @@ public class MainController {
 	public String voteProposal(@PathVariable("id") String id) {
 		Proposal proposal = pDao.getProposalById(Integer.parseInt(id));
 		pDao.voteProposal(proposal);
+		kafkaProducer.send("votedProposal", proposal.toString());
 		return "redirect:/user/home";
 	}
 
@@ -129,6 +131,7 @@ public class MainController {
 	public String voteComment(@PathVariable("id") String id) {
 		Commentary comment = cDao.getCommentaryById(Integer.parseInt(id));
 		cDao.voteComment(comment);
+		kafkaProducer.send("votedComment", comment.toString());
 		return "redirect:/user/viewProposal/" + comment.getProposalId();
 	}
 
@@ -139,6 +142,7 @@ public class MainController {
 		Commentary comment = new Commentary(content, Integer.parseInt(id), user.getId());
 		try {
 			cDao.createComment(comment);
+			kafkaProducer.send("addedComment", comment.toString());
 		} catch (Exception e) {
 			return "/mensajeError";
 		}
@@ -150,20 +154,26 @@ public class MainController {
 	public String addCategory(Model model, @ModelAttribute ControlAdmin controlAdmin) {
 		Category category = new Category(controlAdmin.getCategory());
 		Persistence.getCategoryDao().createCategory(category);
+		kafkaProducer.send("addedCategory", category.toString());
 		return "/admin";
 	}
 
 	@RequestMapping("/addNotAllowedWords")
 	public String addNotAllowedWords(Model model, @ModelAttribute ControlAdmin controlAdmin) {
 		Persistence.getWordDao().add(controlAdmin.getPalabras());
+		kafkaProducer.send("addedNotAllowedWords", controlAdmin.getPalabras().toString());
 		return "/admin";
 	}
 
 	@RequestMapping("/deleteProposal")
 	public String deleteProposal(Model model, @ModelAttribute ControlAdmin controlAdmin) {
-		Persistence.getProposalDao().deleteProposalById(Integer.parseInt(controlAdmin.getProposal()));
+		Integer id = Integer.parseInt(controlAdmin.getProposal());
+		Proposal proposal = Persistence.getProposalDao().getProposalById(id);
+		Persistence.getProposalDao().deleteProposalById(proposal.getId());
 
 		model.addAttribute("controlAdmin", new ControlAdmin());
+
+		kafkaProducer.send("deletedProposal", proposal.toString());
 		return "/admin";
 	}
 

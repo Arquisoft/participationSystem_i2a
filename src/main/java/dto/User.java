@@ -123,9 +123,9 @@ public class User {
 	public String toString() {
 		String simpleDate = new SimpleDateFormat("dd/MM/yyyy").format(birthdate);
 
-		return "Id: " + id + "; Name: " + firstName + "; Surname: " + lastName + "; " + "Email: " + email + "; Birth date: "
+		return "User[Id: " + id + "; Name: " + firstName + "; Surname: " + lastName + "; " + "Email: " + email + "; Birth date: "
 				+ simpleDate + "; " + "Address: " + address + "; Nationality: " + nationality + "; DNI: " + dni
-				+ "; Polling station: " + pollingStation;
+				+ "; Polling station: " + pollingStation +"]";
 
 	}
 
