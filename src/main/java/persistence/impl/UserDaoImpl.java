@@ -19,7 +19,7 @@ public class UserDaoImpl implements UserDao {
 	private static String SQL_FIND_USER_BY_ID = "SELECT * FROM PUBLIC.USER WHERE ID=?";
 	private static String SQL_FIND_USER_BY_EMAIL = "SELECT * FROM PUBLIC.USER WHERE EMAIL=?";
 	private static String SQL_FIND_ALL_EMAILS = "SELECT EMAIL FROM PUBLIC.USER";
-	private static String SQL_INSERT_USER = "INSERT INTO USER (dni, nombre, apellidos, "
+	private static String SQL_INSERT_USER = "INSERT INTO PUBLIC.USER (dni, nombre, apellidos, "
 			+ "password, email, nacimiento, direccion, nacionalidad, polling) "
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private Connection con = Database.getConnection();
