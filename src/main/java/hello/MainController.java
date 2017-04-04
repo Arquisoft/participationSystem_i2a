@@ -67,12 +67,6 @@ public class MainController {
 		return "login";
 	}
 
-	@RequestMapping("/send")
-	public String send(Model model, @ModelAttribute Message message) {
-		kafkaProducer.send("exampleTopic", message.getMessage());
-		return "redirect:/";
-	}
-
 	@RequestMapping("/user/home")
 	public String send(Model model) {
 		model.addAttribute("proposals", pDao.getProposals());
