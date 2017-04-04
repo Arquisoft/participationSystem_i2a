@@ -1,9 +1,8 @@
 package hello;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
-import java.net.URI;
 import java.net.URL;
 
 import org.junit.Before;
@@ -38,7 +37,6 @@ public class MainControllerTest {
 
 	@Test
 	public void getLanding() throws Exception {
-		URI userURI = new URI(base.toString() + "/user");
 		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
 		assertThat(response.getBody(), containsString("Login"));
 	}
@@ -48,6 +46,7 @@ public class MainControllerTest {
 		String userURI = base.toString() + "/user";
 		ResponseEntity<String> response = template.getForEntity(userURI, String.class);
 		UserInfo expected = new UserInfo("pepe", 0);
+		assertThat(response.getBody(), containsString(expected.getName()));
 	}
 
 	@Test

@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class CategoryDtoTest {
-	Category c;
+	private Category c;
 
 	@Before
 	public void setUp() throws Exception {

@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class UserDtoTest {
-	User u;
+	private User u;
 
 	@Before
 	public void setUp() throws Exception {

@@ -10,7 +10,7 @@ import org.junit.Test;
 import dto.User;
 
 public class UserPersistenceTest {
-	UserDao dao = Persistence.getUserDao();
+	private UserDao dao = Persistence.getUserDao();
 
 	@Test
 	public void testFindById() throws ParseException {

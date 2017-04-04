@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ProposalDtoTest {
-	Proposal p;
+	private Proposal p;
 
 	@Before
 	public void setUp() throws Exception {

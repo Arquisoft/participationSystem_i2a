@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class CommentaryDtoTest {
-	Commentary c;
+	private Commentary c;
 
 	@Before
 	public void setUp() throws Exception {
