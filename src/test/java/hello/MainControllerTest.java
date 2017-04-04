@@ -76,6 +76,50 @@ public class MainControllerTest {
 		String userURI = base.toString() + "/mensajeError";
 		ResponseEntity<String> response = template.getForEntity(userURI, String.class);
 		assertThat(response.getBody(), containsString("DON'T USE BAD WORDS!!!"));
-
 	}
+	
+	@Test
+	public void getAddCategory() throws Exception {
+		String userURI = base.toString() + "/addCategory";
+		ResponseEntity<String> response = template.getForEntity(userURI, String.class);
+		assertThat(response.getBody(), containsString("Add category"));
+	}
+	
+	@Test
+	public void getProposal() throws Exception {
+		String userURI = base.toString() + "/user/viewProposal/1";
+		ResponseEntity<String> response = template.getForEntity(userURI, String.class);
+		assertThat(response.getBody(), containsString("Proposal details"));
+	}
+	
+	@Test
+	public void getVoteProposal() throws Exception {
+		String userURI = base.toString() + "/user/voteProposal/1";
+		ResponseEntity<String> response = template.getForEntity(userURI, String.class);
+		assertThat(response.getBody(), containsString("Votes"));
+	}
+	
+	@Test
+	public void getVoteComment() throws Exception {
+		String userURI = base.toString() + "/user/voteComment/1";
+		ResponseEntity<String> response = template.getForEntity(userURI, String.class);
+		assertThat(response.getBody(), containsString("Votes"));
+	}
+	
+	@Test
+	public void getOrderCommentsDate() throws Exception {
+		String userURI = base.toString() + "/user/orderCommentsDate/1";
+		ResponseEntity<String> response = template.getForEntity(userURI, String.class);
+		assertThat(response.getBody(), containsString("Votes"));
+	}
+	
+	
+	@Test
+	public void getOrderCommentsPopularity() throws Exception {
+		String userURI = base.toString() + "/user/orderCommentsPopularity/1";
+		ResponseEntity<String> response = template.getForEntity(userURI, String.class);
+		assertThat(response.getBody(), containsString("Votes"));
+	}
+	
+	
 }
