@@ -176,12 +176,8 @@ public class MainController {
 		Persistence.getProposalDao().deleteProposalById(proposal.getId());
 
 		model.addAttribute("controlAdmin", new ControlAdmin());
-<<<<<<< HEAD
 		model.addAttribute("proposals", pDao.getProposals());
-=======
-
 		kafkaProducer.send("deletedProposal", proposal.toString());
->>>>>>> 28312e6f450da047e9f693bcdf02fd5a9d61cddf
 		return "/admin";
 	}
 
