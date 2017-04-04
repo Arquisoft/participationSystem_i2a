@@ -192,37 +192,83 @@ ALTER TABLE public.words
 INSERT INTO public.user(
             id, dni, nombre, apellidos, email, password, nacimiento, direccion, polling, 
             nacionalidad)
-    VALUES (1, '12345678A', 'Pepe', 'Calleja', 'calleja@email.com', 'password1234', 
+    VALUES (1, '12345678A', 'Pepe', 'Calleja', 'calleja@email.com', 'password', 
       '1950-03-25', 'Oviedo', 2, 'Spanish');
 
 INSERT INTO public.user(
             id, dni, nombre, apellidos, email, password, nacimiento, direccion, polling, 
             nacionalidad)
-    VALUES (2, '87654321A', 'User', 'User', 'user@email.com', 'pass', 
-      '1953-06-21', 'Oviedo', 1, 'Spanish');
+    VALUES (2, '798431467A', 'Carlos', 'Fernandez', 'carlos@email.com', 'password', 
+      '1967-05-13', 'Oviedo', 3, 'Spanish');
+INSERT INTO public.user(
+            id, dni, nombre, apellidos, email, password, nacimiento, direccion, polling, 
+            nacionalidad)
+    VALUES (3, '9172457631Y', 'Maria', 'Perez', 'maria@email.com', 'password', 
+      '1984-12-26', 'Oviedo', 1, 'Spanish');
+INSERT INTO public.user(
+            id, dni, nombre, apellidos, email, password, nacimiento, direccion, polling, 
+            nacionalidad)
+    VALUES (4, '718346981R', 'Simon', 'Neil', 'simon@email.com', 'password', 
+      '1979-08-31', 'Edinburgh', 2, 'British');
+INSERT INTO public.user(
+            id, dni, nombre, apellidos, email, password, nacimiento, direccion, polling, 
+            nacionalidad)
+    VALUES (5, '76756556E', 'admin', 'admin', 'admin@email.com', 'password', 
+      '1967-05-13', 'Oviedo', 0, 'Spanish');
 
-ALTER SEQUENCE public.user_id_seq RESTART WITH 3;	 
+ALTER SEQUENCE public.user_id_seq RESTART WITH 6;	 
 	  
 INSERT INTO public.category(
             id, name)
     VALUES (1, 'General');
+INSERT INTO public.category(
+            id, name)
+    VALUES (2, 'Entertainment');
 
-ALTER SEQUENCE public.category_id_seq RESTART WITH 2;
+ALTER SEQUENCE public.category_id_seq RESTART WITH 3;
 
 INSERT INTO public.proposal(
             id, content, votes, user_id, category_id)
-    VALUES (1, 'Hacer un parque', 0, 1, 1);
+    VALUES (1, 'Build a park', 1, 2, 1);
 
 INSERT INTO public.proposal(
             id, content, votes, user_id, category_id)
-    VALUES (2, 'Hacer un monumento', 0, 1, 1);
+    VALUES (2, 'Open shopping mall', 0, 3, 2);
 
-ALTER SEQUENCE public.proposal_id_seq RESTART WITH 3;	
+INSERT INTO public.proposal(
+            id, content, votes, user_id, category_id)
+    VALUES (3, 'Metallica concert', 4, 4, 2);
+
+INSERT INTO public.proposal(
+            id, content, votes, user_id, category_id)
+    VALUES (4, 'Host a literature convention', 2, 3, 2);
+
+ALTER SEQUENCE public.proposal_id_seq RESTART WITH 5;	
 	
 INSERT INTO public.commentary(
             id, content, votes, fecha, user_id, proposal_id)
-    VALUES (1, 'Buena idea el parque', 0, '2017-04-02', 2, 1);
+    VALUES (1, 'Yeah! This would rock :D', 0, '2017-04-02', 3, 3);
 
-ALTER SEQUENCE public.commentary_id_seq RESTART WITH 2;
+INSERT INTO public.commentary(
+            id, content, votes, fecha, user_id, proposal_id)
+    VALUES (2, 'And bring Foo Fighters!', 0, '2017-04-01', 2, 3);
+
+INSERT INTO public.commentary(
+            id, content, votes, fecha, user_id, proposal_id)
+    VALUES (3, 'Great for children and pets', 0, '2017-03-24', 2, 1);
+
+INSERT INTO public.commentary(
+            id, content, votes, fecha, user_id, proposal_id)
+    VALUES (4, 'With a cinema maybe?', 0, '2017-04-07', 4, 2);
+
+INSERT INTO public.commentary(
+            id, content, votes, fecha, user_id, proposal_id)
+    VALUES (5, 'Yes! With a daycarer for children', 0, '2017-04-08', 3, 2);
+
+INSERT INTO public.commentary(
+            id, content, votes, fecha, user_id, proposal_id)
+    VALUES (6, 'Bring George RR Martin :3', 0, '2017-04-01', 2, 4);
+
+ALTER SEQUENCE public.commentary_id_seq RESTART WITH 7;
 
 

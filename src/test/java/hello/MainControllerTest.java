@@ -43,14 +43,6 @@ public class MainControllerTest {
 	}
 
 	@Test
-	public void getUser() throws Exception {
-		String userURI = base.toString() + "/user";
-		ResponseEntity<String> response = template.getForEntity(userURI, String.class);
-		UserInfo expected = new UserInfo("pepe", 0);
-		assertThat(response.getBody(), containsString(expected.getName()));
-	}
-
-	@Test
 	public void getUserHome() throws Exception {
 		String userURI = base.toString() + "/user/home";
 		ResponseEntity<String> response = template.getForEntity(userURI, String.class);

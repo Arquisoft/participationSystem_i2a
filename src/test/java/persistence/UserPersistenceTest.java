@@ -1,14 +1,13 @@
 package persistence;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import dto.User;
@@ -38,9 +37,9 @@ public class UserPersistenceTest {
 		user.setPassword("password");
 		
 		dao.createUser(user);
-		user.setId(3);
+		user.setId(6);
 		
-		User found = dao.getUserById(3);
+		User found = dao.getUserById(6);
 		System.out.println(found);
 		System.out.println(user);
 		
