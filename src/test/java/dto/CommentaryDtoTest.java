@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class CommentaryDtoTest {
-	Commentary c;
+	private Commentary c;
 
 	@Before
 	public void setUp() throws Exception {
@@ -41,15 +41,15 @@ public class CommentaryDtoTest {
 		c.setFecha(format.parse("17/03/2017"));
 		assertEquals(format.parse("17/03/2017"), c.getFecha());
 
-		assertEquals("Id: 1; Content: blablabla; Votes: 1; Date: 17/03/2017; Proposal: 1; User: 1", c.toString());
+		assertEquals("Commentary[Id: 1; Content: blablabla; Votes: 1; Date: 17/03/2017; Proposal: 1; User: 1]", c.toString());
 		
 		c = new Commentary(new Integer(1), "blablabla", 1, format.parse("17/03/2017"), new Integer(1), new Integer(1));
-		assertEquals("Id: 1; Content: blablabla; Votes: 1; Date: 17/03/2017; Proposal: 1; User: 1", c.toString());
+		assertEquals("Commentary[Id: 1; Content: blablabla; Votes: 1; Date: 17/03/2017; Proposal: 1; User: 1]", c.toString());
 		
 
 		c = new Commentary("blablabla", 1, format.parse("17/03/2017"), new Integer(1), new Integer(1));
 		c.setId(new Integer(1));
-		assertEquals("Id: 1; Content: blablabla; Votes: 1; Date: 17/03/2017; Proposal: 1; User: 1", c.toString());
+		assertEquals("Commentary[Id: 1; Content: blablabla; Votes: 1; Date: 17/03/2017; Proposal: 1; User: 1]", c.toString());
 		
 		
 	}

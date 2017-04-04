@@ -77,8 +77,8 @@ public class Proposal {
 
 	@Override
 	public String toString() {
-		return "Id: " + id + "; Content: " + content + "; Votes: " + votes + "; "
-				+ "Category: " + categoryId + "; User: " + userId;
+		return "Proposal[Id: " + id + "; Content: " + content + "; Votes: " + votes + "; "
+				+ "Category: " + categoryId + "; User: " + userId +"]";
 
 	}
 

@@ -33,7 +33,7 @@ public class AddProposalTest {
 		c.setCategory(cat);
 		assertEquals(cat, c.getCategory());
 		
-		assertEquals("AddProposal [category=Id: null; Name: categoria, text=El contenido]", c.toString());
+		assertEquals("AddProposal [category=Category[Id: null; Name: categoria], text=El contenido]", c.toString());
 		
 		c.setText("");
 		assertEquals("", c.getText());
